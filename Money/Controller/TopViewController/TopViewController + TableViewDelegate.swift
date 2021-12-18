@@ -5,7 +5,6 @@ import UIKit
 extension TopViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let categeoryBar = CategeoryBar()
         categeoryBar.categeoryBarDelegate = self
         return categeoryBar
     }
@@ -15,12 +14,13 @@ extension TopViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return selectedItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: shoppingListIdentifier, for: indexPath) as! TopViewCell
-        cell.backgroundColor = .systemPink
+        cell.viewModel = ItemViewModel(item: selectedItems[indexPath.row])
+        cell.delegate = self
         return cell
     }
 }
@@ -29,10 +29,12 @@ extension TopViewController: UITableViewDataSource {
 
 extension TopViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedCellNumber = indexPath.row
         
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut) {
-            self.backgroundView.alpha = 1
-            self.customAlert.alpha = 1
-        }
+        let name = selectedItems[indexPath.row].name
+        let price = selectedItems[indexPath.row].price
+        customAlert.setItemInfo(info: ItemInfo(name: name, price: price))
+        
+        showAlert()
     }
 }

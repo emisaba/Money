@@ -1,8 +1,14 @@
 import UIKit
 
+protocol CustomCheckBoxDelegate {
+    func checkValue(isChecked: Bool)
+}
+
 class CustomCheckBox: UIView {
     
     // MARK: - Properties
+    
+    public var delegate: CustomCheckBoxDelegate?
     
     private lazy var checkBoxView: UIButton = {
         let button = UIButton()
@@ -21,6 +27,8 @@ class CustomCheckBox: UIView {
         return label
     }()
     
+    private var isChecked = false
+    
     // MARK: - LifeCycle
     
     override init(frame: CGRect) {
@@ -37,6 +45,9 @@ class CustomCheckBox: UIView {
     
     @objc func didTapSquare() {
         checkLabel.isHidden.toggle()
+        
+        isChecked.toggle()
+        delegate?.checkValue(isChecked: isChecked)
     }
     
     // MARK: - Helper
@@ -47,5 +58,14 @@ class CustomCheckBox: UIView {
         
         addSubview(checkLabel)
         checkLabel.fillSuperview()
+    }
+    
+    func checkValue(isChecked: Bool) {
+        checkLabel.isHidden = isChecked ? false : true
+        self.isChecked = isChecked
+    }
+    
+    func defaulteUI() {
+        checkLabel.isHidden = true
     }
 }

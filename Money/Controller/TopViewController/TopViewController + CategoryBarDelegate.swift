@@ -2,6 +2,10 @@ import UIKit
 import Hero
 
 extension TopViewController: CategeoryBarDelegate {
+    func selectedCategory(imageUrl: String) {
+        selectedCategoryImageUrl = imageUrl
+        showSelectedList()
+    }
     
     func showHistoryView(image: UIButton) {
         image.hero.id = "showHistoryView"

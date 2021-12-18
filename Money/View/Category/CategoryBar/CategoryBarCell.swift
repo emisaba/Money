@@ -1,20 +1,21 @@
 import UIKit
+import SDWebImage
 
-protocol CategoryViewCellDelegate {
+protocol CategoryBarCellDelegate {
     func showHistoryView(image: UIButton)
+    func selectedCategoryUrl(url: String)
 }
 
-class CategoryViewCell: UICollectionViewCell {
+class CategoryBarCell: CategoryCell {
     
     // MARK: - Properties
     
-    public var delegate: CategoryViewCellDelegate?
+    public var delegate: CategoryBarCellDelegate?
     
-    public var viewModel: CategoryViewModel? {
+    public var viewModel: CategoryBarViewModel? {
         didSet { configureViewModel() }
     }
     
-    private lazy var imageView = UIButton.createImageView(image: #imageLiteral(resourceName: "add"), radius: frame.width / 2)
     public lazy var historyButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "history"), target: self, selector: #selector(didTapHistoryButton))
     
     // MARK: - LifeCycle
@@ -22,7 +23,7 @@ class CategoryViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configureUI()
+        configureHistoryButton()
     }
     
     required init?(coder: NSCoder) {
@@ -33,6 +34,11 @@ class CategoryViewCell: UICollectionViewCell {
         didSet {
             imageView.backgroundColor = isSelected ? .systemGreen : .systemYellow
             historyButton.isHidden = isSelected ? false : true
+            
+            if isSelected {
+                guard let url = viewModel?.imageUrl?.absoluteString else { return }
+                delegate?.selectedCategoryUrl(url: url)
+            }
         }
     }
     
@@ -44,10 +50,7 @@ class CategoryViewCell: UICollectionViewCell {
     
     // MARK: - Helper
     
-    func configureUI() {
-        addSubview(imageView)
-        imageView.anchor(top: topAnchor)
-        imageView.setDimensions(height: frame.width, width: frame.width)
+    func configureHistoryButton() {
         
         contentView.addSubview(historyButton)
         historyButton.isHidden = true
@@ -58,16 +61,12 @@ class CategoryViewCell: UICollectionViewCell {
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        if viewModel.shouldSelect { selectedUI() }
+        imageView.sd_setImage(with: viewModel.imageUrl, for: .normal, completed: nil)
+        self.isSelected = viewModel.shouldSelect ? true : false
     }
     
     func notSelectedUI() {
         imageView.backgroundColor = .systemYellow
         historyButton.isHidden = true
-    }
-    
-    func selectedUI() {
-        imageView.backgroundColor = .systemGreen
-        historyButton.isHidden = false
     }
 }

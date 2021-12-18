@@ -1,12 +1,22 @@
 import UIKit
 
+protocol TopViewCellDelegate {
+    func checkValue(item: Item)
+}
+
 class TopViewCell: UITableViewCell {
     
     // MARK: - Properties
     
+    public var delegate: TopViewCellDelegate?
+    
+    public var viewModel: ItemViewModel? {
+        didSet { configureViewModel() }
+    }
+    
     private let squareView = CustomCheckBox()
-    private let nameLabel = UITextField.createLabelTextField(text: "にんじん")
-    private let priceLabel = UITextField.createLabelTextField(text: "￥100")
+    private let nameLabel = UITextField.createLabelTextField(text: "")
+    private let priceLabel = UITextField.createLabelTextField(text: "")
     
     // MARK: - LifeCycle
     
@@ -14,6 +24,7 @@ class TopViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         configureUI()
+        setDelegate()
     }
     
     required init?(coder: NSCoder) {
@@ -24,6 +35,7 @@ class TopViewCell: UITableViewCell {
     
     func configureUI() {
         selectionStyle = .none
+        backgroundColor = .systemPink
         
         contentView.addSubview(squareView)
         squareView.anchor(left: leftAnchor,
@@ -39,5 +51,17 @@ class TopViewCell: UITableViewCell {
         addSubview(priceLabel)
         priceLabel.anchor(right: rightAnchor, paddingRight: 10)
         priceLabel.centerY(inView: self)
+    }
+    
+    func configureViewModel() {
+        guard let viewModel = viewModel else { return }
+        
+        squareView.checkValue(isChecked: viewModel.isChecked)
+        nameLabel.text = viewModel.name
+        priceLabel.text = viewModel.price
+    }
+    
+    func setDelegate() {
+        squareView.delegate = self
     }
 }

@@ -1,10 +1,18 @@
 import UIKit
 
+protocol CustomInputViewDelegate {
+    func registerItem(view: CustomInputView)
+}
+
 class CustomInputView: UIView {
     
     // MARK: - Properties
     
+    public var delegate: CustomInputViewDelegate?
+    
     private let squareView = CustomCheckBox()
+    public var isChecked = false
+    
     public let nameTextField = UITextField.createTextField(placeholder: "")
     public let priceTextField = UITextField.createTextField(placeholder: "")
     public lazy var namePlaceholederLabel = createPlaceHolderLabel(text: "name")
@@ -30,6 +38,7 @@ class CustomInputView: UIView {
     // MARK: - Action
     
     @objc func didTapRegisterButton() {
+        delegate?.registerItem(view: self)
         setDefaultUI(sender: registerButton)
     }
     
@@ -105,6 +114,7 @@ class CustomInputView: UIView {
     func setDelegate() {
         nameTextField.delegate = self
         priceTextField.delegate = self
+        squareView.delegate = self
     }
     
     func createPlaceHolderLabel(text: String) -> UILabel {
@@ -117,6 +127,8 @@ class CustomInputView: UIView {
     }
     
     func setDefaultUI(sender: UIButton) {
+        squareView.defaulteUI()
+        
         nameTextField.becomeFirstResponder()
         nameTextField.text = ""
         priceTextField.text = ""

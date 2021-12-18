@@ -1,6 +1,6 @@
 import UIKit
 
-enum MoneyState {
+enum MoneyType {
     case income
     case spending
     case saving

@@ -50,7 +50,7 @@ class CustomAlert: UIView {
             editCompletion?(incomeInfo)
             
         case .spendingEdit:
-            break
+            delegate?.didTapOkButton(alert: self)
         }
     }
     
@@ -99,10 +99,25 @@ class CustomAlert: UIView {
                                height: 60)
     }
     
+    func setItemInfo(info: ItemInfo) {
+        nameTextField.text = info.name
+        priceTextField.text = "\(info.price)"
+    }
+    
+    func itemInfo() -> ItemInfo? {
+        guard let name = nameTextField.text else { return nil }
+        guard let price = priceTextField.text else { return nil }
+        guard let priceInt = Int(price) else { return nil }
+        
+        return ItemInfo(name: name, price: priceInt)
+    }
+    
     func incomeInfo() -> IncomeInfo? {
         guard let name = nameTextField.text else { return nil }
         guard let price = priceTextField.text else { return nil }
-        return IncomeInfo(name: name, price: Int(price) ?? 0)
+        guard let priceInt = Int(price) else { return nil }
+        
+        return IncomeInfo(name: name, price: priceInt)
     }
     
     func addIncome() {

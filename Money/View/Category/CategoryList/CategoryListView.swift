@@ -1,8 +1,14 @@
 import UIKit
 
+protocol CategoryListViewDelegate {
+    func selectCategory(image: UIImage)
+}
+
 class CategoryListView: UIView {
     
     // MARK: - Properties
+    
+    public var delegate: CategoryListViewDelegate?
     
     private let identifier = "identifier"
     
@@ -12,13 +18,15 @@ class CategoryListView: UIView {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
-        cv.register(CategoryViewCell.self, forCellWithReuseIdentifier: identifier)
+        cv.register(CategoryListCell.self, forCellWithReuseIdentifier: identifier)
         cv.backgroundColor = .white
         cv.contentInset = UIEdgeInsets(top: 20, left:20, bottom: 10, right: 20)
         cv.showsHorizontalScrollIndicator = false
         cv.layer.cornerRadius = 50
         return cv
     }()
+    
+    private let categoryImages = CategoryHelper.images()
     
     // MARK: - LifeCycle
     
@@ -40,11 +48,12 @@ class CategoryListView: UIView {
 
 extension CategoryListView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return categoryImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CategoryViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CategoryListCell
+        cell.categoryImage = categoryImages[indexPath.row]
         return cell
     }
 }
@@ -52,7 +61,9 @@ extension CategoryListView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension CategoryListView: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.selectCategory(image: categoryImages[indexPath.row])
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

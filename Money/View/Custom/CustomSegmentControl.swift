@@ -1,8 +1,14 @@
 import UIKit
 
+protocol CustomSegmentControlDelegate {
+    func changeSegmentValue(spendingType: SpendingType)
+}
+
 class CustomSegmentControl: UIView {
     
     // MARK: - Properties
+    
+    public var delegate: CustomSegmentControlDelegate?
     
     private lazy var fixedButton = createButton(title: "固定", selector: #selector(didTapFixedButton))
     private lazy var variableButton = createButton(title: "変動", selector:  #selector(didTapVariableButton))
@@ -25,6 +31,8 @@ class CustomSegmentControl: UIView {
     
     @objc func didTapFixedButton() {
         
+        delegate?.changeSegmentValue(spendingType: .fixed)
+        
         UIView.animate(withDuration: 0.25, delay: 0,
                        usingSpringWithDamping: 0.6,
                        initialSpringVelocity: 2,
@@ -35,6 +43,8 @@ class CustomSegmentControl: UIView {
     }
     
     @objc func didTapVariableButton() {
+        
+        delegate?.changeSegmentValue(spendingType: .variable)
         
         UIView.animate(withDuration: 0.25, delay: 0,
                        usingSpringWithDamping: 0.6,

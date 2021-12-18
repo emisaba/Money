@@ -3,6 +3,13 @@ import UIKit
 protocol TopViewHeaderDelegate {
     func showIncomeView()
     func showSavingView()
+    func changeSegmentedValue(spendingType: SpendingType)
+    func uploadBudgetInfo(budgetInfo: BudgetInfo)
+}
+
+struct CalculateInfo {
+    let income: Int
+    let spending: Int
 }
 
 class TopViewHeader: UIView {
@@ -15,7 +22,8 @@ class TopViewHeader: UIView {
     private var spendingPriceLabel = UILabel()
     private var savingPriceLabel = UILabel()
     
-    private let monthLabel = UILabel.createBoldFontLabel(text: "MONTH", size: 20)
+    private let monthLabelText = DateFormatter.titleMonth(date: Date())
+    private lazy var monthLabel = UILabel.createBoldFontLabel(text: monthLabelText, size: 20)
     private lazy var incomeStackView = createStackView(moneyType: .income, isIncome: true)
     private lazy var spendingStackView = createStackView(moneyType: .spending, isIncome: false)
     private lazy var savingStackView = createStackView(moneyType: .saving, isIncome: false)
@@ -39,8 +47,9 @@ class TopViewHeader: UIView {
     private let triangleView = TriangleView()
     
     private let segmentBackgroundView = UIView()
-    private let segmentControl: CustomSegmentControl = {
+    private lazy var segmentControl: CustomSegmentControl = {
         let cs = CustomSegmentControl()
+        cs.delegate = self
         cs.layer.cornerRadius = 25
         cs.layer.borderWidth = 1
         cs.layer.borderColor = UIColor.systemGray.cgColor
@@ -72,6 +81,7 @@ class TopViewHeader: UIView {
     // MARK: - Helpers
     
     func configureUI() {
+        backgroundColor = .white
         
         addSubview(monthLabel)
         monthLabel.anchor(top: safeAreaLayoutGuide.topAnchor,
@@ -121,7 +131,7 @@ class TopViewHeader: UIView {
         savingButton.setDimensions(height: 50, width: 50)
     }
     
-    func createStackView(moneyType: MoneyState, isIncome: Bool) -> UIStackView {
+    func createStackView(moneyType: MoneyType, isIncome: Bool) -> UIStackView {
         
         let priceLabel = UILabel()
         
@@ -134,7 +144,7 @@ class TopViewHeader: UIView {
             savingPriceLabel = priceLabel
         }
         
-        priceLabel.text = "¥000,000"
+        priceLabel.text = "￥ 000,000"
         priceLabel.font = .boldSystemFont(ofSize: 18)
         
         let titleLabel = UILabel()
@@ -160,7 +170,47 @@ class TopViewHeader: UIView {
         return label
     }
     
-    func setIncomePriceLabel(price: String) {
-        incomePriceLabel.text = price
+    func setIncomePriceLabel(price: Int) {
+        incomePriceLabel.text = "￥ \(price)"
+        calcurateSaving()
+    }
+    
+    func setSpendingPriceLabel(price: Int) {
+        spendingPriceLabel.text = "￥ \(price)"
+        calcurateSaving()
+    }
+    
+    func calcurateSaving() {
+        guard let budgetInfo = budgetStringToInt() else { return }
+        
+        let saving = budgetInfo.income - budgetInfo.spending
+        savingPriceLabel.text = "￥ \(saving)"
+        
+        let uploadBudgetInfo = BudgetInfo(income: budgetInfo.income,
+                                          spending: budgetInfo.spending,
+                                          saving: saving)
+        delegate?.uploadBudgetInfo(budgetInfo: uploadBudgetInfo)
+    }
+    
+    func configureBudget(budget: Budget) {
+        incomePriceLabel.text = "￥ \(budget.income)"
+        spendingPriceLabel.text = "￥ \(budget.spending)"
+        savingPriceLabel.text = "￥ \(budget.saving)"
+    }
+    
+    func budgetStringToInt() -> CalculateInfo? {
+        
+        guard let incomeString = incomePriceLabel.text?
+                .replacingOccurrences(of: "￥ 000,000", with: "0")
+                .replacingOccurrences(of: "￥ ", with: "") else { return nil }
+        
+        guard let spendingString = spendingPriceLabel.text?
+                .replacingOccurrences(of: "￥ 000,000", with: "0")
+                .replacingOccurrences(of: "￥ ", with: "") else { return nil }
+        
+        guard let income = Int(incomeString) else { return nil }
+        guard let spending = Int(spendingString) else { return nil }
+        
+        return CalculateInfo(income: income, spending: spending)
     }
 }
