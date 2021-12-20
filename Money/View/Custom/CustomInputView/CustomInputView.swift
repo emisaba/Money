@@ -39,6 +39,7 @@ class CustomInputView: UIView {
     
     @objc func didTapRegisterButton() {
         delegate?.registerItem(view: self)
+        isChecked = false
         setDefaultUI(sender: registerButton)
     }
     
@@ -149,5 +150,3 @@ class CustomInputView: UIView {
         }
     }
 }
-
-

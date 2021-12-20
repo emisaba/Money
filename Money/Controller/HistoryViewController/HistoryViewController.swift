@@ -17,22 +17,57 @@ class HistoryViewController: UIViewController {
         return tv
     }()
     
+    public var heroItem: UIButton?
+    
+    public var historyItems: [HistoryItem] = []
+    public var selectedHistoryItems: [HistoryItem] = []
+    
+    public var completion: (([HistoryItem]) -> Void)?
+    
     // MARK: - LifeCycle
+    
+    init(image: UIImage, historyItems: [HistoryItem]) {
+        self.mainImageView.setImage(image, for: .normal)
+        self.historyItems = historyItems
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
+    }
+    
+    // MARK: - API
+    
+    func incrementHistoryItemCount() {
+        HistoryService.incrementCount(selectItems: selectedHistoryItems) { error in
+            if let error = error {
+                print("failed to increment: \(error.localizedDescription)")
+                return
+            }
+            
+            self.completion?(self.selectedHistoryItems)
+            self.dismiss(animated: true) {
+                self.heroItem?.hero.id = ""
+            }
+        }
     }
     
     // MARK: - Action
     
     @objc func didTapCloseButton() {
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            self.heroItem?.hero.id = ""
+        }
     }
     
     @objc func didTapRegisterButton() {
-        
+        incrementHistoryItemCount()
     }
     
     // MARK: - Helpers

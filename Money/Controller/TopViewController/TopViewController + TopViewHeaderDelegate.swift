@@ -8,7 +8,7 @@ extension TopViewController: TopViewHeaderDelegate {
     
     func changeSegmentedValue(spendingType: SpendingType) {
         self.spendingType = spendingType
-        showSelectedList()
+        swapListCategory()
     }
     
     func showIncomeView() {

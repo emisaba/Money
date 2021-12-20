@@ -5,11 +5,13 @@ import UIKit
 extension HistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return historyItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! HistoryViewCell
+        cell.viewModel = HistoryItemViewModel(item: historyItems[indexPath.row], cellNumber: indexPath.row)
+        cell.delegate = self
         return cell
     }
 }

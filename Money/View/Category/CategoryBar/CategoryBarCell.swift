@@ -2,7 +2,7 @@ import UIKit
 import SDWebImage
 
 protocol CategoryBarCellDelegate {
-    func showHistoryView(image: UIButton)
+    func showHistoryView(cell: CategoryBarCell)
     func selectedCategoryUrl(url: String)
 }
 
@@ -45,7 +45,7 @@ class CategoryBarCell: CategoryCell {
     // MARK: - Action
     
     @objc func didTapHistoryButton() {
-        delegate?.showHistoryView(image: imageView)
+        delegate?.showHistoryView(cell: self)
     }
     
     // MARK: - Helper

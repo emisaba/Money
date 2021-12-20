@@ -41,10 +41,20 @@ struct ItemService {
         ref.updateData(data, completion: completion)
     }
     
-    static func changeCheckValue(item: Item, completion: @escaping(Error?) -> Void) {
+    static func changeCheckValue(item: Item, shouldAddHistory: Bool, completion: @escaping(Error?) -> Void) {
+        
         let ref = COLLECTION_ITEMS.document(item.itemID)
         let data: [String: Any] = ["isChecked": item.isChecked]
         
-        ref.updateData(data, completion: completion)
+        ref.updateData(data)  { error in
+            if let error = error {
+                print("failed to change checke value: \(error.localizedDescription)")
+                return
+            }
+            
+            if item.isChecked && shouldAddHistory {
+                HistoryService.uploadHistoryItem(item: item, completion: completion)
+            }
+        }
     }
 }

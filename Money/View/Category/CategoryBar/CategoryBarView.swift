@@ -2,7 +2,7 @@ import UIKit
 
 protocol CategeoryBarDelegate {
     func showCategoryView()
-    func showHistoryView(image: UIButton)
+    func showHistoryView(cell: CategoryBarCell)
     func selectedCategory(imageUrl: String)
 }
 
@@ -143,14 +143,3 @@ extension CategeoryBar: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - CategoryViewCellDelegate
-
-extension CategeoryBar: CategoryBarCellDelegate {
-    func selectedCategoryUrl(url: String) {
-        categeoryBarDelegate?.selectedCategory(imageUrl: url)
-    }
-    
-    func showHistoryView(image: UIButton) {
-        categeoryBarDelegate?.showHistoryView(image: image)
-    }
-}

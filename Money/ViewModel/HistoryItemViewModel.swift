@@ -1,7 +1,7 @@
-import UIKit
+import Foundation
 
-struct ItemViewModel {
-    let item: Item
+struct HistoryItemViewModel {
+    let item: HistoryItem
     let cellNumber: Int
     
     var isChecked: Bool {
@@ -16,7 +16,7 @@ struct ItemViewModel {
         return "￥ \(item.price)"
     }
     
-    init(item: Item, cellNumber: Int) {
+    init(item: HistoryItem, cellNumber: Int) {
         self.item = item
         self.cellNumber = cellNumber
     }

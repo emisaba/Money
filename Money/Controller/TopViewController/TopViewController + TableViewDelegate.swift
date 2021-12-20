@@ -19,7 +19,7 @@ extension TopViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: shoppingListIdentifier, for: indexPath) as! TopViewCell
-        cell.viewModel = ItemViewModel(item: selectedItems[indexPath.row])
+        cell.viewModel = ItemViewModel(item: selectedItems[indexPath.row], cellNumber: indexPath.row)
         cell.delegate = self
         return cell
     }

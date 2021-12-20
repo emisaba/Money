@@ -56,8 +56,11 @@ class TopViewController: UIViewController {
         return alert
     }()
     
-    private var allItems: [Item] = []
+    public var allItems: [Item] = []
     public var selectedItems: [Item] = []
+    
+    public var historyItems: [HistoryItem] = []
+    public var selectedHistoryItems: [HistoryItem] = []
     
     public  let inputCloseButtonHeight: CGFloat = 50
     private let inputHeight: CGFloat = 120
@@ -72,7 +75,7 @@ class TopViewController: UIViewController {
         super.viewDidLoad()
         
         fetchCategories()
-        fetchBudget()
+        fetchHistoryItem()
         configureUI()
         setupConstraint()
         keyboardNotification()
@@ -114,24 +117,27 @@ class TopViewController: UIViewController {
     }
     
     func uploadItem(data: [String: Any]) {
-        
         ItemService.uploadItem(data: data) { item in
             self.allItems.append(item)
-            self.showSelectedList()
+            self.swapListCategory()
             
             if  self.selectedItems.count > 0 {
                 let index = IndexPath(row: self.selectedItems.count - 1, section: 0)
                 self.shoppingListView.scrollToRow(at: index, at: .bottom, animated: true)
             }
             
-//            if item.isChecked { self.changeSpendingSum() }
+            if item.isChecked {
+                self.changeSpendingSum(item: item)
+                self.uploadHistoryItem(item: item)
+            }
         }
     }
     
     func fetchItem() {
         ItemService.fetchItem { items in
             self.allItems = items
-            self.showSelectedList()
+            self.swapListCategory()
+            self.changeSpendingSum(item: nil)
         }
     }
     
@@ -148,29 +154,50 @@ class TopViewController: UIViewController {
     }
     
     func changeCheckValue(item: Item) {
+        let isHistoryItemExist = isHistoryItemExist(item: item)
         
-        ItemService.changeCheckValue(item: item) { error in
+        ItemService.changeCheckValue(item: item,
+                                     shouldAddHistory: !isHistoryItemExist) { _ in
+            self.fetchHistoryItem()
+        }
+    }
+    
+    func fetchHistoryItem() {
+        self.selectedHistoryItems = []
+        
+        HistoryService.fetchHistoryItem { historyItems in
+            self.historyItems = historyItems
+            
+            historyItems.forEach { item in
+                if self.selectedCategoryImageUrl == item.categoryUrl {
+                    self.selectedHistoryItems.append(item)
+                }
+            }
+        }
+    }
+    
+    func uploadHistoryItem(item: Item) {
+        
+        let isHistoryItemExist = isHistoryItemExist(item: item)
+        if isHistoryItemExist { return }
+        
+        HistoryService.uploadHistoryItem(item: item) { error in
             if let error = error {
-                print("failed to change checke value: \(error.localizedDescription)")
+                print("failed to upload: \(error.localizedDescription)")
                 return
             }
+            self.fetchHistoryItem()
         }
     }
     
     func uploadBudget(budgetInfo: BudgetInfo) {
         
-        BudgetService.uploadSum(sumInfo: budgetInfo) { error in
-            if let error = error {
-                print("failed to upload budget: \(error.localizedDescription)")
-                return
-            }
-        }
-    }
-    
-    func fetchBudget() {
-        BudgetService.fetchSum { budget in
-            self.topViewHeader?.configureBudget(budget: budget)
-        }
+//        BudgetService.uploadSum(sumInfo: budgetInfo) { error in
+//            if let error = error {
+//                print("failed to upload budget: \(error.localizedDescription)")
+//                return
+//            }
+//        }
     }
     
     // MARK: - Helper
@@ -220,21 +247,16 @@ class TopViewController: UIViewController {
         }
     }
     
-    func changeSpendingSum(item: Item) {
+    func changeSpendingSum(item: Item?) {
         var prices: [Int] = []
+        allItems.forEach { if $0.isChecked { prices.append($0.price) }}
         
-        allItems.forEach { item in
-            if item.isChecked {
-                prices.append(item.price)
-            }
-        }
-        var sum = prices.reduce(0) { $0 + $1 }
-        if !item.isChecked { sum -= item.price }
-        
+        let sum = prices.reduce(0) { $0 + $1 }
         self.topViewHeader?.setSpendingPriceLabel(price: sum)
     }
     
-    func showSelectedList() {
+    func swapListCategory() {
+        
         self.selectedItems = []
         
         allItems.forEach { item in
@@ -245,6 +267,34 @@ class TopViewController: UIViewController {
         }
         
         self.shoppingListView.reloadData()
+    }
+    
+    func swapHistoryCategory() {
+        self.selectedHistoryItems = []
+        
+        historyItems.forEach { item in
+            if item.categoryUrl == selectedCategoryImageUrl &&
+                item.spendingType == self.spendingType.text {
+                self.selectedHistoryItems.append(item)
+            }
+        }
+        
+        self.shoppingListView.reloadData()
+    }
+    
+    func isHistoryItemExist(item: Item) -> Bool {
+        var isExist = false
+        
+        for historyItem in selectedHistoryItems {
+            if item.name == historyItem.name
+                && item.price == historyItem.price
+                && item.categoryUrl == historyItem.categoryUrl {
+                
+                isExist = true
+                break
+            }
+        }
+        return isExist
     }
 }
 

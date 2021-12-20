@@ -77,6 +77,11 @@
 		82B9CFD5276DB72B0081985D /* BudgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CFD4276DB72B0081985D /* BudgetInfo.swift */; };
 		82B9CFD7276DB8840081985D /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CFD6276DB8840081985D /* Budget.swift */; };
 		82B9CFD9276DEEF30081985D /* DateFormatter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CFD8276DEEF30081985D /* DateFormatter + Extension.swift */; };
+		82B9CFDB276F0A700081985D /* CategoryBarView + CategoryBarCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CFDA276F0A6D0081985D /* CategoryBarView + CategoryBarCellDelegate.swift */; };
+		82B9CFDD27700BFE0081985D /* HistoryViewController + HistoryViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CFDC27700BFA0081985D /* HistoryViewController + HistoryViewCellDelegate.swift */; };
+		82B9CFDF277021FE0081985D /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CFDE277021FB0081985D /* HistoryService.swift */; };
+		82B9CFE127702CD80081985D /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CFE027702CD80081985D /* HistoryItem.swift */; };
+		82B9CFE32770445C0081985D /* HistoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CFE22770445B0081985D /* HistoryItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +157,11 @@
 		82B9CFD4276DB72B0081985D /* BudgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetInfo.swift; sourceTree = "<group>"; };
 		82B9CFD6276DB8840081985D /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
 		82B9CFD8276DEEF30081985D /* DateFormatter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + Extension.swift"; sourceTree = "<group>"; };
+		82B9CFDA276F0A6D0081985D /* CategoryBarView + CategoryBarCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryBarView + CategoryBarCellDelegate.swift"; sourceTree = "<group>"; };
+		82B9CFDC27700BFA0081985D /* HistoryViewController + HistoryViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryViewController + HistoryViewCellDelegate.swift"; sourceTree = "<group>"; };
+		82B9CFDE277021FB0081985D /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
+		82B9CFE027702CD80081985D /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
+		82B9CFE22770445B0081985D /* HistoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItemViewModel.swift; sourceTree = "<group>"; };
 		CC8EAD86FBAA88ED223CEE5E /* Pods-Money.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Money.release.xcconfig"; path = "Target Support Files/Pods-Money/Pods-Money.release.xcconfig"; sourceTree = "<group>"; };
 		ECD6AB5A8DC58927CB605ADF /* Pods-Money.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Money.debug.xcconfig"; path = "Target Support Files/Pods-Money/Pods-Money.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +244,7 @@
 				82B9CFB5276C4BB10081985D /* CategoryService.swift */,
 				82B9CFC5276CCD4C0081985D /* ItemService.swift */,
 				82B9CFD2276DB5550081985D /* BudgetService.swift */,
+				82B9CFDE277021FB0081985D /* HistoryService.swift */,
 				82B9CFB7276C4C550081985D /* ImageUploader.swift */,
 			);
 			path = API;
@@ -242,10 +253,10 @@
 		82B9CF38276865720081985D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				82B9CF78276A0C490081985D /* HistoryViewController */,
 				82B9CF72276A09BD0081985D /* TopViewController */,
 				82B9CF73276A09D10081985D /* IncomViewController */,
 				82B9CF8E276B59FA0081985D /* SavingViewController */,
+				82B9CF78276A0C490081985D /* HistoryViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -272,6 +283,7 @@
 				82B9CF7F276AFA330081985D /* CategoryBarViewModel.swift */,
 				82B9CFA5276B73E10081985D /* IncomeViewModel.swift */,
 				82B9CFBF276CBCD00081985D /* ItemViewModel.swift */,
+				82B9CFE22770445B0081985D /* HistoryItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -281,6 +293,7 @@
 			children = (
 				82B9CFA3276B715E0081985D /* Income.swift */,
 				82B9CFBB276CB7BC0081985D /* Item.swift */,
+				82B9CFE027702CD80081985D /* HistoryItem.swift */,
 				82B9CFB3276C49D70081985D /* Category.swift */,
 				82B9CFD6276DB8840081985D /* Budget.swift */,
 				82B9CF9C276B6D2F0081985D /* APIHelper */,
@@ -372,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				82B9CF682769F23E0081985D /* CategoryBarView.swift */,
+				82B9CFDA276F0A6D0081985D /* CategoryBarView + CategoryBarCellDelegate.swift */,
 				82B9CFB9276C50590081985D /* CategoryBarCell.swift */,
 			);
 			path = CategoryBar;
@@ -417,6 +431,7 @@
 			children = (
 				82B9CF79276A0C840081985D /* HistoryViewController.swift */,
 				82B9CF87276B0DDB0081985D /* HistoryViewController + UITableViewDelegate.swift */,
+				82B9CFDC27700BFA0081985D /* HistoryViewController + HistoryViewCellDelegate.swift */,
 			);
 			path = HistoryViewController;
 			sourceTree = "<group>";
@@ -620,6 +635,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82B9CF8D276B50130081985D /* IncomeViewController + UITableViewDelegate.swift in Sources */,
+				82B9CFDB276F0A700081985D /* CategoryBarView + CategoryBarCellDelegate.swift in Sources */,
 				82B9CFD3276DB5560081985D /* BudgetService.swift in Sources */,
 				82B9CF4E2768A8180081985D /* MoneyType.swift in Sources */,
 				82B9CF9B276B6CF60081985D /* IncomeService.swift in Sources */,
@@ -632,6 +648,7 @@
 				82B9CFC4276CC4B90081985D /* TopViewHeader + CustomSegmentControlDelegate.swift in Sources */,
 				82B9CF91276B59FA0081985D /* SavingViewController.swift in Sources */,
 				82B9CFB0276C450F0081985D /* CategoryListCell.swift in Sources */,
+				82B9CFE127702CD80081985D /* HistoryItem.swift in Sources */,
 				82B9CFBA276C50590081985D /* CategoryBarCell.swift in Sources */,
 				82B9CFCA276CF8B00081985D /* ItemInfo.swift in Sources */,
 				82B9CF83276B06190081985D /* BaseTableView.swift in Sources */,
@@ -641,6 +658,7 @@
 				82B9CFCF276D9F9D0081985D /* TopViewController + TopViewCellDelegate.swift in Sources */,
 				82B9CF97276B5D540081985D /* HistoryViewCell.swift in Sources */,
 				82B9CF3D276865DA0081985D /* UIView + Extension.swift in Sources */,
+				82B9CFDD27700BFE0081985D /* HistoryViewController + HistoryViewCellDelegate.swift in Sources */,
 				82B9CF5E2769C61F0081985D /* TopViewController + KeyboardAnimation.swift in Sources */,
 				82B9CFB6276C4BB10081985D /* CategoryService.swift in Sources */,
 				82B9CFC6276CCD4D0081985D /* ItemService.swift in Sources */,
@@ -659,6 +677,7 @@
 				82B9CF9E276B6D460081985D /* IncomeInfo.swift in Sources */,
 				82B9CF662769EE2E0081985D /* CustomCheckBox.swift in Sources */,
 				82B9CF23276865010081985D /* AppDelegate.swift in Sources */,
+				82B9CFDF277021FE0081985D /* HistoryService.swift in Sources */,
 				82B9CFBC276CB7BC0081985D /* Item.swift in Sources */,
 				82B9CF6B2769F4EF0081985D /* CategoryCell.swift in Sources */,
 				82B9CF8A276B0E700081985D /* SavingViewCell.swift in Sources */,
@@ -677,6 +696,7 @@
 				82B9CFA9276B748C0081985D /* IncomeViewCell.swift in Sources */,
 				82B9CF71276A002A0081985D /* TopViewController + CategoryBarDelegate.swift in Sources */,
 				82B9CF25276865010081985D /* SceneDelegate.swift in Sources */,
+				82B9CFE32770445C0081985D /* HistoryItemViewModel.swift in Sources */,
 				82B9CF43276883270081985D /* TopViewController + TableViewDelegate.swift in Sources */,
 				82B9CF92276B59FA0081985D /* SavingViewController + UITableViewDelegate.swift in Sources */,
 				82B9CF622769E87C0081985D /* TopViewCell.swift in Sources */,

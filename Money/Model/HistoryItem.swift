@@ -1,13 +1,14 @@
 import UIKit
 import Firebase
 
-struct Item {
+struct HistoryItem {
     let spendingType: String
     let categoryUrl: String
     var name: String
     var price: Int
     var isChecked: Bool
     let itemID: String
+    let count: Int
     let timeStamp: Timestamp
     
     init(data: [String: Any]) {
@@ -17,6 +18,7 @@ struct Item {
         self.price = data["price"] as? Int ?? 0
         self.isChecked = data["isChecked"] as? Bool ?? true
         self.itemID = data["itemID"] as? String ?? ""
+        self.count = data["count"] as? Int ?? 0
         self.timeStamp = data["timeStamp"] as? Timestamp ?? Timestamp()
     }
 }

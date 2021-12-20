@@ -27,7 +27,7 @@ class CustomCheckBox: UIView {
         return label
     }()
     
-    private var isChecked = false
+    public var isChecked = false
     
     // MARK: - LifeCycle
     
@@ -60,12 +60,13 @@ class CustomCheckBox: UIView {
         checkLabel.fillSuperview()
     }
     
-    func checkValue(isChecked: Bool) {
+    func topViewCellCheckValue(isChecked: Bool) {
         checkLabel.isHidden = isChecked ? false : true
         self.isChecked = isChecked
     }
     
     func defaulteUI() {
         checkLabel.isHidden = true
+        self.isChecked = false
     }
 }

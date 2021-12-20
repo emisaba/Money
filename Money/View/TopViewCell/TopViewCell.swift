@@ -56,7 +56,7 @@ class TopViewCell: UITableViewCell {
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        squareView.checkValue(isChecked: viewModel.isChecked)
+        squareView.topViewCellCheckValue(isChecked: viewModel.isChecked)
         nameLabel.text = viewModel.name
         priceLabel.text = viewModel.price
     }

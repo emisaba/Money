@@ -1,12 +1,25 @@
 import UIKit
 
+protocol HistoryViewCellDelegate {
+    func selectItem(cellNumber: Int, shouldRemove: Bool)
+}
+
 class HistoryViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    private let squareView = CustomCheckBox()
-    private let nameLabel = UITextField.createLabelTextField(text: "にんじん")
-    private let priceLabel = UITextField.createLabelTextField(text: "￥100")
+    public var delegate: HistoryViewCellDelegate?
+    
+    public var viewModel: HistoryItemViewModel? {
+        didSet { configureViewModel() }
+    }
+    
+    private let nameLabel = UITextField.createLabelTextField(text: "")
+    private let priceLabel = UITextField.createLabelTextField(text: "")
+    private lazy var selectButton = UIButton.createTextButton(text: "select",
+                                                              target: self,
+                                                              selector: #selector(didTapSelectButton))
+    private var alreadySelected = false
     
     // MARK: - LifeCycle
     
@@ -20,24 +33,40 @@ class HistoryViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Action
+    
+    @objc func didTapSelectButton() {
+        guard let cellNumber = viewModel?.cellNumber else { return }
+        delegate?.selectItem(cellNumber: cellNumber,
+                             shouldRemove: alreadySelected)
+        alreadySelected.toggle()
+    }
+    
     // MARK: - Helper
     
     func configureUI() {
         selectionStyle = .none
         
-        contentView.addSubview(squareView)
-        squareView.anchor(left: leftAnchor,
-                          paddingLeft: 10)
-        squareView.setDimensions(height: 25, width: 25)
-        squareView.centerY(inView: self)
-        
         addSubview(nameLabel)
-        nameLabel.anchor(left: squareView.rightAnchor,
-                             paddingLeft: 10)
+        nameLabel.anchor(left: leftAnchor,
+                         paddingLeft: 10)
         nameLabel.centerY(inView: self)
         
         addSubview(priceLabel)
-        priceLabel.anchor(right: rightAnchor, paddingRight: 10)
+        priceLabel.anchor(left: nameLabel.rightAnchor,
+                          paddingLeft: 30)
         priceLabel.centerY(inView: self)
+        
+        contentView.addSubview(selectButton)
+        selectButton.anchor(right: rightAnchor,
+                            paddingRight: 10)
+        selectButton.centerY(inView: self)
+    }
+    
+    func configureViewModel() {
+        guard let viewModel = viewModel else { return }
+        
+        nameLabel.text = viewModel.name
+        priceLabel.text = viewModel.price
     }
 }
