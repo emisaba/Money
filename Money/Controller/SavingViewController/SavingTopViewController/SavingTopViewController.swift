@@ -1,6 +1,6 @@
 import UIKit
 
-class SavingViewController: UIViewController {
+class SavingTopViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -16,7 +16,18 @@ class SavingViewController: UIViewController {
         return tv
     }()
     
+    public var savings: [Saving] = []
+    
     // MARK: - LifeCycle
+    
+    init(savings: [Saving]) {
+        self.savings = savings
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +38,7 @@ class SavingViewController: UIViewController {
     // MARK: - Action
     
     @objc func didTapCloseButton() {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Helper

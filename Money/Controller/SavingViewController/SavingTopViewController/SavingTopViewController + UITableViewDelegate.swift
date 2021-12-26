@@ -2,25 +2,25 @@ import UIKit
 
 // MARK: - UITableViewDataSource
 
-extension SavingViewController: UITableViewDataSource {
+extension SavingTopViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return savings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SavingViewCell
+        cell.viewModel = SavingViewModel(saving: savings[indexPath.row])
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
 
-extension SavingViewController: UITableViewDelegate {
+extension SavingTopViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut) {
-            
-        }
+        let vc = SavingMonthViewController(savings: savings)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

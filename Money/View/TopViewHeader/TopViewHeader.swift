@@ -4,7 +4,7 @@ protocol TopViewHeaderDelegate {
     func showIncomeView()
     func showSavingView()
     func changeSegmentedValue(spendingType: SpendingType)
-    func uploadBudgetInfo(budgetInfo: BudgetInfo)
+    func changeSavingValue(savingValue: Int)
 }
 
 struct CalculateInfo {
@@ -172,30 +172,21 @@ class TopViewHeader: UIView {
     
     func setIncomePriceLabel(price: Int) {
         incomePriceLabel.text = "￥ \(price)"
-        calcurateSaving()
+        calculateSaving(fromInput: true)
     }
     
     func setSpendingPriceLabel(price: Int) {
         spendingPriceLabel.text = "￥ \(price)"
-        calcurateSaving()
+        calculateSaving(fromInput: false)
     }
     
-    func calcurateSaving() {
+    func calculateSaving(fromInput: Bool) {
         guard let budgetInfo = budgetStringToInt() else { return }
         
         let saving = budgetInfo.income - budgetInfo.spending
         savingPriceLabel.text = "￥ \(saving)"
         
-        let uploadBudgetInfo = BudgetInfo(income: budgetInfo.income,
-                                          spending: budgetInfo.spending,
-                                          saving: saving)
-        delegate?.uploadBudgetInfo(budgetInfo: uploadBudgetInfo)
-    }
-    
-    func configureBudget(budget: Budget) {
-        incomePriceLabel.text = "￥ \(budget.income)"
-        spendingPriceLabel.text = "￥ \(budget.spending)"
-        savingPriceLabel.text = "￥ \(budget.saving)"
+        delegate?.changeSavingValue(savingValue: saving)
     }
     
     func budgetStringToInt() -> CalculateInfo? {

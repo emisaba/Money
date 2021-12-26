@@ -6,8 +6,11 @@ struct CategoryService {
     static func uploadCategory(image: UIImage, completion: @escaping(String) -> Void) {
         ImageUploader.uploadImage(image: image) { imageUrl in
             
+            let date = DateFormatter.dateString(date: Date())
+            let removeDay = date.dropLast(3)
+            
             let data: [String: Any] = ["imageUrl": imageUrl,
-                                       "timeStamp": Timestamp()]
+                                       "date": removeDay]
             
             COLLECTION_CATEGORIES.addDocument(data: data) { error in
                 if let error = error {

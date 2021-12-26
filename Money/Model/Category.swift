@@ -3,10 +3,10 @@ import Firebase
 
 struct Category {
     let imageUrl: String
-    let timeStamp: Timestamp
+    let date: String
     
     init(data: [String: Any]) {
         self.imageUrl = data["imageUrl"] as? String ?? ""
-        self.timeStamp  = data["timeStamp"] as? Timestamp ?? Timestamp()
+        self.date  = data["date"] as? String ?? ""
     }
 }

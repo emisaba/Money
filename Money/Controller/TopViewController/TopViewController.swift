@@ -56,6 +56,9 @@ class TopViewController: UIViewController {
         return alert
     }()
     
+    private var categories: [Category] = []
+    public var savings: [Saving] = []
+    
     public var allItems: [Item] = []
     public var selectedItems: [Item] = []
     
@@ -74,11 +77,17 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchSaving()
         fetchCategories()
         fetchHistoryItem()
         configureUI()
         setupConstraint()
         keyboardNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -100,7 +109,6 @@ class TopViewController: UIViewController {
     // MARK: - API
     
     func uploadNewCategory(image: UIImage) {
-        
         CategoryService.uploadCategory(image: image) { imageUrl in
             self.categeoryBar.reloadCollectionViewAfterNewCategorySelected(imageUrl: imageUrl)
         }
@@ -108,6 +116,8 @@ class TopViewController: UIViewController {
     
     func fetchCategories() {
         CategoryService.fetchCategories { categories in
+            self.categories = categories
+            
             guard let firstCategory = categories.first else { return }
             self.selectedCategoryImageUrl = firstCategory.imageUrl
             self.categeoryBar.reloadCollectionViewAfterCategoryFetched(categories: categories)
@@ -190,14 +200,23 @@ class TopViewController: UIViewController {
         }
     }
     
-    func uploadBudget(budgetInfo: BudgetInfo) {
+    func uploadSaving(savingValue: Int) {
         
-//        BudgetService.uploadSum(sumInfo: budgetInfo) { error in
-//            if let error = error {
-//                print("failed to upload budget: \(error.localizedDescription)")
-//                return
-//            }
-//        }
+        let categoriesString = categories.map { $0.imageUrl }
+        let info = SavingInfo(cost: savingValue, categories: categoriesString)
+        
+        SavingService.uploadSaving(savingInfo: info) { error in
+            if let error = error {
+                print("failed to upload saving: \(error.localizedDescription)")
+                return
+            }
+        }
+    }
+    
+    func fetchSaving() {
+        SavingService.fetchSaving { savings in
+            self.savings = savings
+        }
     }
     
     // MARK: - Helper
@@ -256,7 +275,6 @@ class TopViewController: UIViewController {
     }
     
     func swapListCategory() {
-        
         self.selectedItems = []
         
         allItems.forEach { item in

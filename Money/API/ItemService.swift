@@ -10,6 +10,11 @@ struct ItemService {
         var data = data
         data.updateValue(itemID, forKey: "itemID")
         
+        let date = DateFormatter.dateString(date: Date())
+        let removeDay = date.dropLast(3)
+        
+        data.updateValue(removeDay, forKey: "date")
+        
         ref.setData(data) { error in
             if let error = error {
                 print("failed to upload item: \(error.localizedDescription)")

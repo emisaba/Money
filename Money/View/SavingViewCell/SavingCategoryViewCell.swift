@@ -1,15 +1,15 @@
 import UIKit
 
-class SavingViewCell: UITableViewCell {
+class SavingCategoryViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    public var viewModel: SavingViewModel? {
-        didSet { configureViewModel()  }
+    public var viewModel: ItemViewModel? {
+        didSet { configureViewModel() }
     }
     
-    private let dateLabel = UITextField.createLabelTextField(text: "")
-    private let priceLabel = UITextField.createLabelTextField(text: "")
+    private let itemLabel = UILabel.createBoldFontLabel(text: "", size: 18)
+    private let priceLabel = UILabel.createBoldFontLabel(text: "", size: 18)
     
     // MARK: - LifeCycle
     
@@ -23,15 +23,12 @@ class SavingViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Helper
+    // MARK: - Helpers
     
     func configureUI() {
-        selectionStyle = .none
-        
-        addSubview(dateLabel)
-        dateLabel.anchor(left: leftAnchor,
-                         paddingLeft: 10)
-        dateLabel.centerY(inView: self)
+        addSubview(itemLabel)
+        itemLabel.anchor(left: leftAnchor, paddingLeft: 10)
+        itemLabel.centerY(inView: self)
         
         addSubview(priceLabel)
         priceLabel.anchor(right: rightAnchor, paddingRight: 10)
@@ -41,7 +38,7 @@ class SavingViewCell: UITableViewCell {
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        dateLabel.text = viewModel.date
-        priceLabel.text = viewModel.savingPrice
+        itemLabel.text = viewModel.name
+        priceLabel.text = viewModel.price
     }
 }

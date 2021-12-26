@@ -7,6 +7,7 @@ extension UIImageView {
         iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = radius
         iv.image = image
+        iv.clipsToBounds = true
         iv.backgroundColor = .systemYellow
         return iv
     }
