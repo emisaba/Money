@@ -26,19 +26,27 @@ class SavingCategoryViewCell: UITableViewCell {
     // MARK: - Helpers
     
     func configureUI() {
+        selectionStyle = .none
+        backgroundColor = .customNavyBlue()
+        
         addSubview(itemLabel)
-        itemLabel.anchor(left: leftAnchor, paddingLeft: 10)
+        itemLabel.anchor(left: leftAnchor, paddingLeft: 20)
         itemLabel.centerY(inView: self)
         
         addSubview(priceLabel)
-        priceLabel.anchor(right: rightAnchor, paddingRight: 10)
+        priceLabel.anchor(right: rightAnchor, paddingRight: 20)
         priceLabel.centerY(inView: self)
     }
     
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        itemLabel.text = viewModel.name
-        priceLabel.text = viewModel.price
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3, .foregroundColor: UIColor.white]
+        let itemLabelAttributedText = NSAttributedString(string: "\(viewModel.name)", attributes: attributes)
+        itemLabel.attributedText = itemLabelAttributedText
+        
+        let priceLabelAttributedText = NSMutableAttributedString(string: "￥ ", attributes: attributes)
+        priceLabelAttributedText.append(NSAttributedString(string: "\(viewModel.price)", attributes: attributes))
+        priceLabel.attributedText = priceLabelAttributedText
     }
 }

@@ -7,8 +7,8 @@ struct IncomeViewModel {
         return income.name
     }
     
-    var price: String {
-        return "￥ \(income.price)"
+    var price: Int {
+        return income.price
     }
     
     init(income: Income) {

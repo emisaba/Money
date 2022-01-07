@@ -13,8 +13,8 @@ class CustomCheckBox: UIView {
     private lazy var checkBoxView: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.systemGray.cgColor
-        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 1.5
         button.addTarget(self, action: #selector(didTapSquare), for: .touchUpInside)
         return button
     }()
@@ -24,6 +24,7 @@ class CustomCheckBox: UIView {
         label.text = "✓"
         label.textAlignment = .center
         label.isHidden = true
+        label.textColor = .white
         return label
     }()
     

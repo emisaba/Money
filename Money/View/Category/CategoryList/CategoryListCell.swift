@@ -12,5 +12,6 @@ class CategoryListCell: CategoryCell {
     
     func setCategoryListImage(image: UIImage) {
         imageView.setImage(image, for: .normal)
+        imageView.backgroundColor = .white
     }
 }

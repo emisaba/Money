@@ -16,7 +16,7 @@ class HistoryViewCell: UITableViewCell {
     
     private let nameLabel = UITextField.createLabelTextField(text: "")
     private let priceLabel = UITextField.createLabelTextField(text: "")
-    private lazy var selectButton = UIButton.createTextButton(text: "select",
+    private lazy var selectButton = UIButton.createTextButton(text: " select",
                                                               target: self,
                                                               selector: #selector(didTapSelectButton))
     private var alreadySelected = false
@@ -46,10 +46,11 @@ class HistoryViewCell: UITableViewCell {
     
     func configureUI() {
         selectionStyle = .none
+        backgroundColor = .customNavyBlue()
         
         addSubview(nameLabel)
         nameLabel.anchor(left: leftAnchor,
-                         paddingLeft: 10)
+                         paddingLeft: 20)
         nameLabel.centerY(inView: self)
         
         addSubview(priceLabel)
@@ -59,14 +60,19 @@ class HistoryViewCell: UITableViewCell {
         
         contentView.addSubview(selectButton)
         selectButton.anchor(right: rightAnchor,
-                            paddingRight: 10)
+                            paddingRight: 20)
         selectButton.centerY(inView: self)
     }
     
     func configureViewModel() {
+        
         guard let viewModel = viewModel else { return }
         
-        nameLabel.text = viewModel.name
-        priceLabel.text = viewModel.price
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3]
+        nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: attributes)
+        
+        let priceAttributedText = NSMutableAttributedString(string: "￥  ")
+        priceAttributedText.append(NSAttributedString(string: "\(viewModel.price)", attributes: attributes))
+        priceLabel.attributedText = priceAttributedText
     }
 }

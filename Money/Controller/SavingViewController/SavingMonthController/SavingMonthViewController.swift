@@ -7,7 +7,7 @@ class SavingMonthViewController: UIViewController {
     private let monthLabel = UILabel.createBoldFontLabel(text: "", size: 24)
     private let priceLabel = UILabel.createBoldFontLabel(text: "", size: 20)
     
-    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "history"), target: self, selector: #selector(didTapCloseButton))
+    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "arrow-left"), target: self, selector: #selector(didTapCloseButton))
     
     public let identifier = "identifier"
     private lazy var tableView: BaseTableView = {
@@ -25,8 +25,13 @@ class SavingMonthViewController: UIViewController {
     init(savings: [Saving]) {
         
         if let saving = savings.first {
-            monthLabel.text = saving.date
-            priceLabel.text = "￥ \(saving.savingCost)"
+            let monthAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 25), .kern: 3, .foregroundColor: UIColor.white]
+            monthLabel.attributedText = NSAttributedString(string: saving.date, attributes: monthAttributes)
+            
+            let priceAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3, .foregroundColor: UIColor.white]
+            let attributedText = NSMutableAttributedString(string: "￥ ", attributes: priceAttributes)
+            attributedText.append(NSAttributedString(string: "\(saving.savingCost)", attributes: priceAttributes))
+            priceLabel.attributedText = attributedText
         }
         
         super.init(nibName: nil, bundle: nil)
@@ -76,12 +81,12 @@ class SavingMonthViewController: UIViewController {
     // MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .customNavyBlue()
         
         let titleStackView = UIStackView(arrangedSubviews: [monthLabel, priceLabel])
         titleStackView.distribution = .fillEqually
         titleStackView.axis = .vertical
-        titleStackView.backgroundColor = .systemRed
+        titleStackView.backgroundColor = .customNavyBlue()
         
         view.addSubview(titleStackView)
         titleStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor,

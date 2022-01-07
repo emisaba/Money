@@ -5,7 +5,7 @@ class SavingTopViewController: UIViewController {
     // MARK: - Properties
     
     public let titleLabel = UILabel.createBoldFontLabel(text: "Saving", size: 26)
-    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "history"), target: self, selector: #selector(didTapCloseButton))
+    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "arrow-left"), target: self, selector: #selector(didTapCloseButton))
     
     public let identifier = "identifier"
     private lazy var tableView: BaseTableView = {
@@ -45,10 +45,10 @@ class SavingTopViewController: UIViewController {
     
     func configureUI() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = .customNavyBlue()
         
         view.addSubview(titleLabel)
-        titleLabel.backgroundColor = .white
+        titleLabel.textColor = .white
         titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                           left: view.leftAnchor,
                           paddingTop: 20)

@@ -22,7 +22,7 @@ class TriangleView: UIView {
         path.addLine(to: CGPoint(x: halfFrameWidth + circleRadius, y: circleRadius))
         path.close()
         
-        UIColor.systemPink.setFill()
+        UIColor.customNavyBlue().setFill()
         path.fill()
         
         let circle = UIBezierPath(arcCenter: CGPoint(x: halfFrameWidth, y: circleRadius),

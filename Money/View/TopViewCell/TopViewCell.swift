@@ -35,30 +35,35 @@ class TopViewCell: UITableViewCell {
     
     func configureUI() {
         selectionStyle = .none
-        backgroundColor = .systemPink
+        backgroundColor = .customNavyBlue()
         
         contentView.addSubview(squareView)
         squareView.anchor(left: leftAnchor,
-                          paddingLeft: 10)
+                          paddingLeft: 20)
         squareView.setDimensions(height: 25, width: 25)
         squareView.centerY(inView: self)
         
         addSubview(nameLabel)
         nameLabel.anchor(left: squareView.rightAnchor,
-                             paddingLeft: 10)
+                             paddingLeft: 20)
         nameLabel.centerY(inView: self)
         
         addSubview(priceLabel)
-        priceLabel.anchor(right: rightAnchor, paddingRight: 10)
+        priceLabel.anchor(right: rightAnchor, paddingRight: 20)
         priceLabel.centerY(inView: self)
     }
     
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3]
+        nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: attributes)
+        
+        let priceAttributedTextg = NSMutableAttributedString(string: "￥  ")
+        priceAttributedTextg.append(NSAttributedString(string: "\(viewModel.price)", attributes: attributes))
+        priceLabel.attributedText = priceAttributedTextg
+        
         squareView.topViewCellCheckValue(isChecked: viewModel.isChecked)
-        nameLabel.text = viewModel.name
-        priceLabel.text = viewModel.price
     }
     
     func setDelegate() {

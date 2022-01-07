@@ -6,7 +6,6 @@ class HistoryViewController: UIViewController {
     
     public let mainImageView = UIButton.createImageView(image: #imageLiteral(resourceName: "add"), radius: 60)
     public let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "close"), target: self, selector: #selector(didTapCloseButton))
-    public let registerButton = UIButton.createTextButton(text: "register", target: self, selector: #selector(didTapRegisterButton))
     
     public let identifier = "identifier"
     private lazy var tableView: BaseTableView = {
@@ -14,7 +13,19 @@ class HistoryViewController: UIViewController {
         tv.delegate = self
         tv.dataSource = self
         tv.register(HistoryViewCell.self, forCellReuseIdentifier: identifier)
+        tv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 110, right: 0)
         return tv
+    }()
+    
+    private let registerButton: UIButton = {
+        let registerButton = UIButton.createTextButton(text: "register", target: self, selector: #selector(didTapRegisterButton))
+        registerButton.layer.cornerRadius = 30
+        registerButton.backgroundColor = .customYellow()
+        
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 26), .kern: 5, .foregroundColor: UIColor.customLightNavyBlue()]
+        let attributedTitle = NSAttributedString(string: "Register", attributes: attributes)
+        registerButton.setAttributedTitle(attributedTitle, for: .normal)
+        return registerButton
     }()
     
     public var heroItem: UIButton?
@@ -73,13 +84,15 @@ class HistoryViewController: UIViewController {
     // MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .customNavyBlue()
         
         view.addSubview(mainImageView)
         mainImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                              paddingTop: 10)
         mainImageView.setDimensions(height: 120, width: 120)
         mainImageView.centerX(inView: view)
+        mainImageView.contentEdgeInsets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
+        mainImageView.backgroundColor = .customYellow()
         
         view.addSubview(closeButton)
         closeButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
@@ -91,16 +104,14 @@ class HistoryViewController: UIViewController {
         view.addSubview(tableView)
         tableView.anchor(top: mainImageView.bottomAnchor,
                          left: view.leftAnchor,
-                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         bottom: view.bottomAnchor,
                          right: view.rightAnchor,
-                         paddingTop: 20,
-                         paddingBottom: 80)
+                         paddingTop: 20)
         
         view.addSubview(registerButton)
-        registerButton.anchor(left: view.leftAnchor,
-                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                              right: view.rightAnchor,
-                              height: 80)
+        registerButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
+        registerButton.setDimensions(height: 60, width: view.frame.width - 100)
+        registerButton.centerX(inView: view)
     }
 }
 

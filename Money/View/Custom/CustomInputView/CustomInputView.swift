@@ -15,8 +15,8 @@ class CustomInputView: UIView {
     
     public let nameTextField = UITextField.createTextField(placeholder: "")
     public let priceTextField = UITextField.createTextField(placeholder: "")
-    public lazy var namePlaceholederLabel = createPlaceHolderLabel(text: "name")
-    public lazy var pricePlaceholederLabel = createPlaceHolderLabel(text: "price")
+    public lazy var namePlaceholederLabel = createPlaceHolderLabel(text: " name")
+    public lazy var pricePlaceholederLabel = createPlaceHolderLabel(text: " price")
     private let registerButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "add"), target: self, selector: #selector(didTapRegisterButton))
     public let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "close"), target: self, selector: #selector(didTapCloseButton))
     
@@ -56,6 +56,8 @@ class CustomInputView: UIView {
         let space: CGFloat = 10
         let squareSize: CGFloat = 25
         let longTextField: CGFloat = frame.size.width - (squareSize + (buttonSize * 2) + (space * 5))
+        
+        backgroundColor = .customLightNavyBlue()
         
         addSubview(closeButton)
         closeButton.anchor(top: topAnchor,
@@ -121,9 +123,13 @@ class CustomInputView: UIView {
     func createPlaceHolderLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text
-        label.textColor = .lightGray
+        label.textColor = .white.withAlphaComponent(0.5)
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 16)
+        
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 13), .kern: 2]
+        label.attributedText = NSAttributedString(string:text, attributes: attributes)
+        
         return label
     }
     

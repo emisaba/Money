@@ -20,7 +20,7 @@ class CategoryCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            imageView.backgroundColor = isSelected ? .systemGreen : .systemYellow
+            imageView.backgroundColor = isSelected ? .customYellow() : .clear
         }
     }
     

@@ -7,8 +7,8 @@ struct SavingViewModel {
         return saving.date
     }
     
-    var savingPrice: String {
-        return "￥ \(saving.savingCost)"
+    var savingPrice: Int {
+        return saving.savingCost
     }
     
     init(saving: Saving) {

@@ -9,13 +9,14 @@ class TopViewController: UIViewController {
     
     public lazy var shoppingListView: BaseTableView = {
         let tv = BaseTableView()
-        tv.backgroundColor = .systemPink
+        tv.backgroundColor = .customNavyBlue()
         tv.delegate = self
         tv.dataSource = self
         tv.register(TopViewCell.self, forCellReuseIdentifier: shoppingListIdentifier)
         tv.bounces = false
+        tv.separatorColor = .white
         
-        let headerFrame = CGRect(x: 0, y: 0, width: view.frame.width,  height: 230)
+        let headerFrame = CGRect(x: 0, y: 0, width: view.frame.width,  height: 280)
         topViewHeader = TopViewHeader(frame: headerFrame)
         topViewHeader?.delegate = self
         
@@ -222,7 +223,7 @@ class TopViewController: UIViewController {
     // MARK: - Helper
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .customLightNavyBlue()
         
         view.addSubview(newItemInputView)
         newItemInputView.anchor(left: view.leftAnchor,
@@ -231,7 +232,7 @@ class TopViewController: UIViewController {
                                 height: inputHeight)
         
         view.addSubview(shoppingListView)
-        shoppingListView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+        shoppingListView.anchor(top: view.topAnchor,
                                 left: view.leftAnchor,
                                 bottom: newItemInputView.topAnchor,
                                 right: view.rightAnchor,
@@ -242,8 +243,8 @@ class TopViewController: UIViewController {
         
         view.addSubview(categoryListView)
         categoryListView.frame = CGRect(x: 0, y: view.frame.height,
-                                    width: view.frame.width,
-                                    height: categoryViewHeight)
+                                        width: view.frame.width,
+                                        height: categoryViewHeight)
         
         view.addSubview(customAlert)
         customAlert.centerX(inView: view)

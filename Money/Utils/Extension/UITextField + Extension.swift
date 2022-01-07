@@ -8,11 +8,12 @@ extension UITextField {
         let textField = UITextField()
         textField.placeholder = placeholder
         textField.layer.cornerRadius = 5
-        textField.layer.borderColor = UIColor.systemGray.cgColor
-        textField.layer.borderWidth = 2
+        textField.layer.borderColor = UIColor.white.cgColor
+        textField.layer.borderWidth = 1.5
         textField.leftView = leftView
         textField.leftViewMode = .always
         textField.textAlignment = .left
+        textField.textColor = .white
         return textField
     }
     
@@ -21,6 +22,7 @@ extension UITextField {
         
         let textField = UITextField()
         textField.text = text
+        textField.textColor = .white
         textField.isUserInteractionEnabled = false
         textField.leftView = leftView
         textField.leftViewMode = .never

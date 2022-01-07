@@ -12,8 +12,8 @@ struct HistoryItemViewModel {
         return item.name
     }
     
-    var price: String {
-        return "￥ \(item.price)"
+    var price: Int {
+        return item.price
     }
     
     init(item: HistoryItem, cellNumber: Int) {

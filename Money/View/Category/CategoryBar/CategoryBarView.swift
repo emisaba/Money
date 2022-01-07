@@ -21,8 +21,8 @@ class CategeoryBar: UIView {
         cv.delegate = self
         cv.dataSource = self
         cv.register(CategoryBarCell.self, forCellWithReuseIdentifier: identifier)
-        cv.backgroundColor = .systemPink
-        cv.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        cv.backgroundColor = .customNavyBlue()
+        cv.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         cv.showsHorizontalScrollIndicator = false
         return cv
     }()
@@ -135,11 +135,11 @@ extension CategeoryBar: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = frame.height - 20
-        return CGSize(width: 60, height: height)
+        return CGSize(width: 55, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 15
     }
 }
 

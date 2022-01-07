@@ -6,9 +6,9 @@ class IncomeViewController: UIViewController {
     
     public let titleLabel = UILabel.createBoldFontLabel(text: "Income", size: 26)
     
-    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "history"), target: self, selector: #selector(didTapCloseButton))
-    private let editButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "history"), target: self, selector: #selector(didTapEditButton))
-    private let addButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "history"), target: self, selector: #selector(didTapAddButton))
+    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "close"), target: self, selector: #selector(didTapCloseButton))
+    private let editButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "edit"), target: self, selector: #selector(didTapEditButton))
+    private let addButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "add-line"), target: self, selector: #selector(didTapAddButton))
     
     public let identifier = "identifier"
     private lazy var tableView: BaseTableView = {
@@ -105,10 +105,10 @@ class IncomeViewController: UIViewController {
     
     func configureUI() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = .customNavyBlue()
         
         view.addSubview(titleLabel)
-        titleLabel.backgroundColor = .white
+        titleLabel.textColor = .white
         titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                           left: view.leftAnchor,
                           paddingTop: 20)

@@ -58,5 +58,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>DISPLAY FREE TFB.ttf</string>
+		<string>1 Abraham.otf</string>
+	</array>
 </dict>
 </plist>

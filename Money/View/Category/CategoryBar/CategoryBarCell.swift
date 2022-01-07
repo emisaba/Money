@@ -32,7 +32,7 @@ class CategoryBarCell: CategoryCell {
     
     override var isSelected: Bool {
         didSet {
-            imageView.backgroundColor = isSelected ? .systemGreen : .systemYellow
+            imageView.backgroundColor = isSelected ? .customYellow() : .clear
             historyButton.isHidden = isSelected ? false : true
             
             if isSelected {
@@ -61,8 +61,14 @@ class CategoryBarCell: CategoryCell {
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        imageView.sd_setImage(with: viewModel.imageUrl, for: .normal, completed: nil)
-        self.isSelected = viewModel.shouldSelect ? true : false
+        if viewModel.cellNumber == 0 {
+            imageView.setImage(#imageLiteral(resourceName: "add-line"), for: .normal)
+            imageView.layer.borderWidth = 2
+            imageView.layer.borderColor = UIColor.white.cgColor
+        } else {
+            imageView.sd_setImage(with: viewModel.imageUrl, for: .normal, completed: nil)
+            self.isSelected = viewModel.shouldSelect ? true : false
+        }
     }
     
     func notSelectedUI() {

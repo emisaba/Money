@@ -20,6 +20,10 @@
 		82043EE52778CF5300D2C5DB /* SavingCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE42778CF5200D2C5DB /* SavingCategoryViewController.swift */; };
 		82043EE72778D04E00D2C5DB /* SavingCategoryViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE62778D04E00D2C5DB /* SavingCategoryViewController + UITableViewDelegate.swift */; };
 		82043EE92778DF6400D2C5DB /* SavingCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE82778DF6300D2C5DB /* SavingCategoryViewCell.swift */; };
+		8246547327880F5D002BD067 /* DISPLAY FREE TFB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8246547227880F5D002BD067 /* DISPLAY FREE TFB.ttf */; };
+		8246547527880FD2002BD067 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8246547427880FD2002BD067 /* UIFont + Extension.swift */; };
+		8246548827881D65002BD067 /* 1 Abraham.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8246548127881D64002BD067 /* 1 Abraham.otf */; };
+		82465490278821F3002BD067 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8246548F278821F3002BD067 /* UIColor + Extension.swift */; };
 		82B9CF23276865010081985D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF22276865010081985D /* AppDelegate.swift */; };
 		82B9CF25276865010081985D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF24276865010081985D /* SceneDelegate.swift */; };
 		82B9CF27276865010081985D /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF26276865010081985D /* TopViewController.swift */; };
@@ -110,6 +114,10 @@
 		82043EE42778CF5200D2C5DB /* SavingCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingCategoryViewController.swift; sourceTree = "<group>"; };
 		82043EE62778D04E00D2C5DB /* SavingCategoryViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavingCategoryViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		82043EE82778DF6300D2C5DB /* SavingCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingCategoryViewCell.swift; sourceTree = "<group>"; };
+		8246547227880F5D002BD067 /* DISPLAY FREE TFB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DISPLAY FREE TFB.ttf"; sourceTree = "<group>"; };
+		8246547427880FD2002BD067 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
+		8246548127881D64002BD067 /* 1 Abraham.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "1 Abraham.otf"; sourceTree = "<group>"; };
+		8246548F278821F3002BD067 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		82B9CF1F276865010081985D /* Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Money.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B9CF22276865010081985D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82B9CF24276865010081985D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -247,6 +255,15 @@
 			path = SavingCategoryViewController;
 			sourceTree = "<group>";
 		};
+		8246547127880F1B002BD067 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				8246547227880F5D002BD067 /* DISPLAY FREE TFB.ttf */,
+				8246548127881D64002BD067 /* 1 Abraham.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		82B9CF16276865010081985D = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +305,7 @@
 		82B9CF362768656B0081985D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8246547127880F1B002BD067 /* Font */,
 				82B9CFAC276C2FE60081985D /* CategoryImage */,
 				82B9CF9F276B6E2F0081985D /* Dimension */,
 				82B9CF4C2768A7EF0081985D /* Type */,
@@ -384,6 +402,8 @@
 				82B9CF572768CDF50081985D /* UITextField + Extension.swift */,
 				82B9CF85276B07520081985D /* UIImageView + Extension.swift */,
 				82B9CFD8276DEEF30081985D /* DateFormatter + Extension.swift */,
+				8246547427880FD2002BD067 /* UIFont + Extension.swift */,
+				8246548F278821F3002BD067 /* UIColor + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -647,8 +667,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				82B9CF2F276865080081985D /* LaunchScreen.storyboard in Resources */,
+				8246547327880F5D002BD067 /* DISPLAY FREE TFB.ttf in Resources */,
 				82B9CF99276B6AD00081985D /* GoogleService-Info.plist in Resources */,
 				82B9CF2C276865080081985D /* Assets.xcassets in Resources */,
+				8246548827881D65002BD067 /* 1 Abraham.otf in Resources */,
 				82B9CF2A276865010081985D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -723,6 +745,7 @@
 				82B9CFBA276C50590081985D /* CategoryBarCell.swift in Sources */,
 				82B9CFCA276CF8B00081985D /* ItemInfo.swift in Sources */,
 				82B9CF83276B06190081985D /* BaseTableView.swift in Sources */,
+				82465490278821F3002BD067 /* UIColor + Extension.swift in Sources */,
 				82043ECE2771977800D2C5DB /* SavingViewModel.swift in Sources */,
 				82B9CF6F2769F9A00081985D /* CategoryListView.swift in Sources */,
 				82B9CF562768CD3A0081985D /* UIButton + Extension.swift in Sources */,
@@ -774,6 +797,7 @@
 				82B9CFA9276B748C0081985D /* IncomeViewCell.swift in Sources */,
 				82B9CF71276A002A0081985D /* TopViewController + CategoryBarDelegate.swift in Sources */,
 				82043ED42772C91000D2C5DB /* SavingInfo.swift in Sources */,
+				8246547527880FD2002BD067 /* UIFont + Extension.swift in Sources */,
 				82B9CF25276865010081985D /* SceneDelegate.swift in Sources */,
 				82043ED0277198CB00D2C5DB /* Saving.swift in Sources */,
 				82B9CFE32770445C0081985D /* HistoryItemViewModel.swift in Sources */,

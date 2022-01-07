@@ -7,8 +7,8 @@ struct SavingMonthViewModel {
         return URL(string: saving.categoryUrl)
     }
     
-    var savingSum: String {
-        return String(saving.savingSum)
+    var savingSum: Int {
+        return saving.savingSum
     }
     
     var items: [Item] {

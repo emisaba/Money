@@ -12,8 +12,8 @@ struct ItemViewModel {
         return item.name
     }
     
-    var price: String {
-        return "￥ \(item.price)"
+    var price: Int {
+        return item.price
     }
     
     init(item: Item, cellNumber: Int) {
