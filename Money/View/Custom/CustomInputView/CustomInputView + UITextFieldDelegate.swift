@@ -3,6 +3,7 @@ import UIKit
 extension CustomInputView: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         closeButton.isHidden = false
         
         switch textField {

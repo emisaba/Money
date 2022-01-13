@@ -32,12 +32,19 @@ class CategoryBarCell: CategoryCell {
     
     override var isSelected: Bool {
         didSet {
+            if viewModel?.cellNumber == 0 { return }
+            
             imageView.backgroundColor = isSelected ? .customYellow() : .clear
             historyButton.isHidden = isSelected ? false : true
             
             if isSelected {
                 guard let url = viewModel?.imageUrl?.absoluteString else { return }
                 delegate?.selectedCategoryUrl(url: url)
+            } else {
+                let image = imageView.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+                imageView.setImage(image, for: .normal)
+                imageView.tintColor = .white
+                imageView.layer.borderWidth = 0
             }
         }
     }
@@ -72,7 +79,9 @@ class CategoryBarCell: CategoryCell {
     }
     
     func notSelectedUI() {
-        imageView.backgroundColor = .systemYellow
+        if viewModel?.cellNumber == 0 { return }
+        
+        imageView.backgroundColor = .customYellow()
         historyButton.isHidden = true
     }
 }

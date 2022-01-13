@@ -63,5 +63,9 @@
 		<string>DISPLAY FREE TFB.ttf</string>
 		<string>1 Abraham.otf</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<true/>
 </dict>
 </plist>

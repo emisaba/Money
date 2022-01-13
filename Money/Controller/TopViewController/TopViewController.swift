@@ -16,7 +16,7 @@ class TopViewController: UIViewController {
         tv.bounces = false
         tv.separatorColor = .white
         
-        let headerFrame = CGRect(x: 0, y: 0, width: view.frame.width,  height: 280)
+        let headerFrame = CGRect(x: 0, y: 0, width: view.frame.width,  height: 307)
         topViewHeader = TopViewHeader(frame: headerFrame)
         topViewHeader?.delegate = self
         
@@ -88,6 +88,7 @@ class TopViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -236,6 +237,7 @@ class TopViewController: UIViewController {
                                 left: view.leftAnchor,
                                 bottom: newItemInputView.topAnchor,
                                 right: view.rightAnchor,
+                                paddingTop: -Dimension.safeAreaTop,
                                 paddingBottom: -inputCloseButtonHeight)
         
         view.addSubview(backgroundView)

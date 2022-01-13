@@ -85,7 +85,7 @@ class TopViewHeader: UIView {
         
         addSubview(monthLabel)
         monthLabel.anchor(top: safeAreaLayoutGuide.topAnchor,
-                          paddingTop: 20)
+                          paddingTop: Dimension.safeAreaTop)
         monthLabel.centerX(inView: self)
         
         let stackView = UIStackView(arrangedSubviews: [incomeStackView,

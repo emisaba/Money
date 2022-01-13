@@ -20,9 +20,10 @@ class CustomAlert: UIView {
     
     private let nameTextField = UITextField.createTextField(placeholder: "")
     private let priceTextField = UITextField.createTextField(placeholder: "")
-    private let okButton = UIButton.createTextButton(text: "ok", target: self, selector: #selector(didTapOkButton))
-    private let cancelButton = UIButton.createTextButton(text: "cancel", target: self, selector: #selector(didTapCancelButton))
     
+    private lazy var okButton = createButton(text: "OK", selector: #selector(didTapOkButton))
+    private lazy var cancelButton = createButton(text: "cancel", selector: #selector(didTapCancelButton))
+
     public var editCompletion: ((IncomeInfo) -> Void)?
     
     // MARK: - LifeCycle
@@ -61,47 +62,95 @@ class CustomAlert: UIView {
     // MARK: - Helper
     
     func configureUI() {
+        clipsToBounds = true
         layer.cornerRadius = 20
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.white.cgColor
         backgroundColor = .white
         
-        addSubview(nameTextField)
-        nameTextField.anchor(top: topAnchor,
-                             left: leftAnchor,
-                             right: rightAnchor,
-                             paddingTop: 20,
-                             paddingLeft: 20,
-                             paddingRight: 20,
-                             height: 50)
+        configureTextFieldUI()
+        configureButtonUI()
+    }
+    
+    func configureTextFieldUI() {
+        let textFieldStackView = UIStackView(arrangedSubviews: [nameTextField, priceTextField])
+        textFieldStackView.axis = .vertical
+        textFieldStackView.distribution = .fillEqually
         
-        addSubview(priceTextField)
-        priceTextField.anchor(top: nameTextField.bottomAnchor,
-                              left: leftAnchor,
-                              right: rightAnchor,
-                              paddingTop: 20,
-                              paddingLeft: 20,
-                              paddingRight: 20,
-                              height: 50)
+        addSubview(textFieldStackView)
+        textFieldStackView.anchor(top: topAnchor,
+                                  left: leftAnchor,
+                                  right: rightAnchor,
+                                  paddingTop: 20,
+                                  paddingLeft: 20,
+                                  paddingRight: 20,
+                                  height: 120)
         
-        let buttonStackView = UIStackView(arrangedSubviews: [okButton, cancelButton])
+        let textFieldStackViewFrame = UIView()
+        textFieldStackViewFrame.layer.borderColor = UIColor.customLightNavyBlue().withAlphaComponent(0.2).cgColor
+        textFieldStackViewFrame.layer.borderWidth = 1
+        textFieldStackViewFrame.layer.cornerRadius = 5
+        
+        addSubview(textFieldStackViewFrame)
+        textFieldStackViewFrame.anchor(top: textFieldStackView.topAnchor,
+                                  left: textFieldStackView.leftAnchor,
+                                  bottom: textFieldStackView.bottomAnchor,
+                                  right: textFieldStackView.rightAnchor,
+                                  paddingTop: -5,
+                                  paddingLeft: -5,
+                                  paddingBottom: -5,
+                                  paddingRight: -5)
+        
+        let textfieldDevider = UIView()
+        textfieldDevider.backgroundColor = .customLightNavyBlue().withAlphaComponent(0.2)
+        addSubview(textfieldDevider)
+        textfieldDevider.anchor(left: textFieldStackViewFrame.leftAnchor,
+                                right: textFieldStackViewFrame.rightAnchor,
+                                height: 1)
+        textfieldDevider.centerY(inView: textFieldStackViewFrame)
+    }
+    
+    func configureButtonUI() {
+        let buttonStackView = UIStackView(arrangedSubviews: [cancelButton, okButton])
         buttonStackView.axis = .horizontal
         buttonStackView.distribution = .fillEqually
-        buttonStackView.spacing = 10
+        buttonStackView.backgroundColor = .customLightNavyBlue()
         
         addSubview(buttonStackView)
-        buttonStackView.anchor(top: priceTextField.bottomAnchor,
-                               left: leftAnchor,
+        buttonStackView.anchor(left: leftAnchor,
                                bottom: bottomAnchor,
                                right: rightAnchor,
-                               paddingTop: 20,
-                               paddingLeft: 20,
-                               paddingBottom: 20,
-                               paddingRight: 20,
-                               height: 60)
+                               height: 65)
+        
+        let buttonStackViewDivider = UIView()
+        buttonStackViewDivider.layer.borderColor = UIColor.white.cgColor
+        buttonStackViewDivider.layer.borderWidth = 1
+        buttonStackViewDivider.layer.cornerRadius = 5
+        
+        addSubview(buttonStackViewDivider)
+        buttonStackViewDivider.anchor(bottom: bottomAnchor, paddingBottom: -2)
+        buttonStackViewDivider.setDimensions(height: 70, width: 1)
+        buttonStackViewDivider.centerX(inView: buttonStackView)
+    }
+    
+    func createButton(text: String, selector: Selector) -> UIButton {
+        let button = UIButton()
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        button.clipsToBounds = true
+        
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 20), .kern: 3, .foregroundColor: UIColor.white]
+        let attributedTitle = NSAttributedString(string: text, attributes: attributes)
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        
+        return button
     }
     
     func setItemInfo(info: ItemInfo) {
-        nameTextField.text = info.name
-        priceTextField.text = "\(info.price)"
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.customNavyBlue(),
+                                                         .font: UIFont.abraham(size: 18),
+                                                         .kern: 2]
+        nameTextField.attributedText = NSAttributedString(string: info.name, attributes: attributes)
+        priceTextField.attributedText = NSAttributedString(string: "\(info.price)", attributes: attributes)
     }
     
     func itemInfo() -> ItemInfo? {

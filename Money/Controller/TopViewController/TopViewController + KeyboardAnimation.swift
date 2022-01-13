@@ -10,10 +10,9 @@ extension TopViewController {
         if let userInfo = notification.userInfo {
             guard let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
             let height = keyboardFrame.cgRectValue.height
-            print("keyboardHeight: \(height)")
+            print("###:\(height)")
             
             if isKeyboardShowing {
-                if shoppingListView.frame.origin.y < 0 { return }
                 shoppingListViewTopConstraint?.isActive = true
                 shoppingListViewBottomConstraint?.isActive = true
                 newItemInputViewBottomConstraint?.isActive = true
@@ -32,7 +31,7 @@ extension TopViewController {
     
     func setupConstraint() {
         shoppingListViewTopConstraint = shoppingListView.topAnchor
-            .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+            .constraint(equalTo: view.topAnchor,
                         constant: -Dimension.keyboardHeight)
         
         shoppingListViewBottomConstraint = shoppingListView.bottomAnchor
