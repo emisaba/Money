@@ -10,13 +10,13 @@ class CustomSegmentControl: UIView {
     
     public var delegate: CustomSegmentControlDelegate?
     
-    private lazy var fixedButton = createTextButton(title: "  fixced", selector: #selector(didTapFixedButton), isDefaultSelected: true)
-    private lazy var variableButton = createTextButton(title: "variable ", selector:  #selector(didTapVariableButton), isDefaultSelected: false)
+    private lazy var fixedButton = createTextButton(title: " 変動", selector: #selector(didTapFixedButton), isDefaultSelected: true)
+    private lazy var variableButton = createTextButton(title: " 固定", selector:  #selector(didTapVariableButton), isDefaultSelected: false)
     
     private lazy var selectedView: UIView = {
         let view = UIView()
         view.backgroundColor = .customYellow()
-        view.layer.cornerRadius = (frame.height - 20) / 2
+        view.layer.cornerRadius = (frame.height) / 2
         return view
     }()
     
@@ -38,7 +38,7 @@ class CustomSegmentControl: UIView {
                        initialSpringVelocity: 2,
                        options: .curveEaseInOut) {
             
-            self.selectedView.frame.origin.x = 10
+            self.selectedView.frame.origin.x = 0
             
             self.fixedButton.setTitleColor(.customNavyBlue(), for: .normal)
             self.variableButton.setTitleColor(.white, for: .normal)
@@ -67,9 +67,9 @@ class CustomSegmentControl: UIView {
     func configureUI() {
         
         addSubview(selectedView)
-        selectedView.frame = CGRect(x: 10, y: 10,
-                                    width: frame.width - (frame.width / 2 + 10),
-                                    height: frame.height - 20)
+        selectedView.frame = CGRect(x: 0, y: 0,
+                                    width: frame.width - (frame.width / 2 - 10),
+                                    height: frame.height)
         
         let stackView = UIStackView(arrangedSubviews: [fixedButton, variableButton])
         stackView.axis = .horizontal
@@ -84,7 +84,7 @@ class CustomSegmentControl: UIView {
         button.setTitleColor(isDefaultSelected ? .customNavyBlue() : .white, for: .normal)
         button.addTarget(self, action: selector, for: .touchUpInside)
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 15), .kern: 3]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 3]
         let attributedTitle = NSAttributedString(string: title, attributes: attributes)
         button.setAttributedTitle(attributedTitle, for: .normal)
         

@@ -68,7 +68,7 @@ class HistoryViewCell: UITableViewCell {
         
         guard let viewModel = viewModel else { return }
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
         nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: attributes)
         
         let priceAttributedText = NSMutableAttributedString(string: "￥  ")

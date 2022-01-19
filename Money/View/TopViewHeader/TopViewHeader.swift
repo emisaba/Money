@@ -23,7 +23,7 @@ class TopViewHeader: UIView {
     private var savingPriceLabel = UILabel()
     
     private let monthLabelText = DateFormatter.titleMonth(date: Date())
-    private lazy var monthLabel = UILabel.createBoldFontLabel(text: monthLabelText, size: 30)
+    private lazy var monthLabel = UILabel.createBoldFontLabel(text: "1月", size: 30)
     private lazy var incomeStackView = createStackView(moneyType: .income, isIncome: true)
     private lazy var spendingStackView = createStackView(moneyType: .spending, isIncome: false)
     private lazy var savingStackView = createStackView(moneyType: .saving, isIncome: false)
@@ -50,9 +50,8 @@ class TopViewHeader: UIView {
     private lazy var segmentControl: CustomSegmentControl = {
         let cs = CustomSegmentControl()
         cs.delegate = self
-        cs.layer.cornerRadius = 35
-        cs.layer.borderWidth = 1.5
-        cs.layer.borderColor = UIColor.white.cgColor
+        cs.layer.cornerRadius = 30
+        cs.backgroundColor = .customLightNavyBlue()
         return cs
     }()
     
@@ -81,7 +80,7 @@ class TopViewHeader: UIView {
     // MARK: - Helpers
     
     func configureUI() {
-        backgroundColor = .customYellow()
+        backgroundColor = .customLightNavyBlue()
         
         addSubview(monthLabel)
         monthLabel.anchor(top: safeAreaLayoutGuide.topAnchor,
@@ -100,15 +99,15 @@ class TopViewHeader: UIView {
         stackView.anchor(top: monthLabel.bottomAnchor,
                          left: leftAnchor,
                          right: rightAnchor,
-                         paddingTop: 20,
+                         paddingTop: 15,
                          paddingLeft: 20,
                          paddingRight: 20,
-                         height: 50)
+                         height: 62)
         
         addSubview(triangleView)
-        triangleView.backgroundColor = .customYellow()
+        triangleView.backgroundColor = .customLightNavyBlue()
         triangleView.anchor(top: stackView.bottomAnchor,
-                            paddingTop: 10)
+                            paddingTop: 15)
         triangleView.centerX(inView: self)
         triangleView.setDimensions(height: 30, width: 30)
         
@@ -123,7 +122,7 @@ class TopViewHeader: UIView {
         segmentControl.anchor(top: triangleView.bottomAnchor,
                               paddingTop: 30)
         segmentControl.centerX(inView: self)
-        segmentControl.setDimensions(height: 70, width: 200)
+        segmentControl.setDimensions(height: 60, width: 200)
         
         addSubview(savingButton)
         savingButton.anchor(right: rightAnchor, paddingRight: frame.width - (frame.width - 150 / 4))
@@ -145,15 +144,18 @@ class TopViewHeader: UIView {
         }
         
         priceLabel.text = "￥ 000"
-        priceLabel.font = .digitalFont(size: 18)
+        priceLabel.textColor = .white
+        priceLabel.font = .digitalFont(size: 20)
         
         let titleLabel = UILabel()
         titleLabel.textAlignment = .left
+        titleLabel.textColor = .white
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 13), .kern: 2]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 13), .kern: 1]
         titleLabel.attributedText = NSAttributedString(string: moneyType.title, attributes: attributes)
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, priceLabel])
+        stackView.spacing = 12
         stackView.axis = .vertical
         
         if isIncome {
@@ -168,6 +170,7 @@ class TopViewHeader: UIView {
         let label = UILabel()
         label.text = symbol
         label.font = .boldSystemFont(ofSize: 16)
+        label.textColor = .white
         return label
     }
     

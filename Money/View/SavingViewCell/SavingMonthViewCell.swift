@@ -53,7 +53,8 @@ class SavingMonthViewCell: UITableViewCell {
         categoryImage.sd_setImage(with: viewModel.categoryImage, for: .normal, completed: nil)
         categoryImage.backgroundColor = .customYellow()
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3, .foregroundColor: UIColor.white]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1,
+                                                         .foregroundColor: UIColor.white]
         let attributedText = NSMutableAttributedString(string: "￥ ", attributes: attributes)
         attributedText.append(NSAttributedString(string: "\(viewModel.savingSum)", attributes: attributes))
         priceLabel.attributedText = attributedText

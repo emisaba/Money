@@ -8,11 +8,11 @@ enum MoneyType {
     var title: String {
         switch self {
         case .income:
-            return "income"
+            return "収入"
         case .spending:
-            return "spending"
+            return "支出"
         case .saving:
-            return "saving"
+            return "貯蓄"
         }
     }
 }

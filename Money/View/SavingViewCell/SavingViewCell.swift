@@ -50,7 +50,7 @@ class SavingViewCell: UITableViewCell {
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
         dateLabel.attributedText = NSAttributedString(string: viewModel.date, attributes: attributes)
         
         let priceAttributedText = NSMutableAttributedString(string: "￥  ")

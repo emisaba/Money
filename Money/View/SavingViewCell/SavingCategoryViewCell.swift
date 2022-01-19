@@ -41,7 +41,7 @@ class SavingCategoryViewCell: UITableViewCell {
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3, .foregroundColor: UIColor.white]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1, .foregroundColor: UIColor.white]
         let itemLabelAttributedText = NSAttributedString(string: "\(viewModel.name)", attributes: attributes)
         itemLabel.attributedText = itemLabelAttributedText
         

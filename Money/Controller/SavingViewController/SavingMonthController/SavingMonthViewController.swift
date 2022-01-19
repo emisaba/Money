@@ -25,7 +25,7 @@ class SavingMonthViewController: UIViewController {
     init(savings: [Saving]) {
         
         if let saving = savings.first {
-            let monthAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 25), .kern: 3, .foregroundColor: UIColor.white]
+            let monthAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 25), .kern: 1, .foregroundColor: UIColor.white]
             monthLabel.attributedText = NSAttributedString(string: saving.date, attributes: monthAttributes)
             
             let priceAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3, .foregroundColor: UIColor.white]

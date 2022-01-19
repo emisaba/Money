@@ -14,7 +14,7 @@ class TopViewCell: UITableViewCell {
         didSet { configureViewModel() }
     }
     
-    private let squareView = CustomCheckBox()
+    private let squareView = CustomCheckBox(frame: .zero, isInput: false)
     private let nameLabel = UITextField.createLabelTextField(text: "")
     private let priceLabel = UITextField.createLabelTextField(text: "")
     
@@ -56,7 +56,7 @@ class TopViewCell: UITableViewCell {
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
         nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: attributes)
         
         let priceAttributedTextg = NSMutableAttributedString(string: "￥  ")

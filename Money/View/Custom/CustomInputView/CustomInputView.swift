@@ -10,13 +10,13 @@ class CustomInputView: UIView {
     
     public var delegate: CustomInputViewDelegate?
     
-    private let squareView = CustomCheckBox()
+    private let squareView = CustomCheckBox(frame: .zero, isInput: true)
     public var isChecked = false
     
     public let nameTextField = UITextField.createTextField(placeholder: "")
     public let priceTextField = UITextField.createTextField(placeholder: "")
-    public lazy var namePlaceholederLabel = createPlaceHolderLabel(text: " name")
-    public lazy var pricePlaceholederLabel = createPlaceHolderLabel(text: " price")
+    public lazy var namePlaceholederLabel = createPlaceHolderLabel(text: " タイトル")
+    public lazy var pricePlaceholederLabel = createPlaceHolderLabel(text: "￥")
     private let registerButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "add"), target: self, selector: #selector(didTapRegisterButton))
     public let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "close"), target: self, selector: #selector(didTapCloseButton))
     
@@ -57,7 +57,7 @@ class CustomInputView: UIView {
         let squareSize: CGFloat = 25
         let longTextField: CGFloat = frame.size.width - (squareSize + (buttonSize * 2) + (space * 5))
         
-        backgroundColor = .customLightNavyBlue()
+        backgroundColor = .clear
         
         addSubview(closeButton)
         closeButton.anchor(top: topAnchor,
@@ -123,11 +123,11 @@ class CustomInputView: UIView {
     func createPlaceHolderLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text
-        label.textColor = .white.withAlphaComponent(0.5)
+        label.textColor = .customLightNavyBlue().withAlphaComponent(0.4)
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 16)
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 13), .kern: 2]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 13), .kern: 1]
         label.attributedText = NSAttributedString(string:text, attributes: attributes)
         
         return label

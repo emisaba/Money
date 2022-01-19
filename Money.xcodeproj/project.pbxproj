@@ -24,6 +24,7 @@
 		8246547527880FD2002BD067 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8246547427880FD2002BD067 /* UIFont + Extension.swift */; };
 		8246548827881D65002BD067 /* 1 Abraham.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8246548127881D64002BD067 /* 1 Abraham.otf */; };
 		82465490278821F3002BD067 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8246548F278821F3002BD067 /* UIColor + Extension.swift */; };
+		82873FDD2797B25000024290 /* bananaslipplus.otf in Resources */ = {isa = PBXBuildFile; fileRef = 82873FDB2797B25000024290 /* bananaslipplus.otf */; };
 		82B9CF23276865010081985D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF22276865010081985D /* AppDelegate.swift */; };
 		82B9CF25276865010081985D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF24276865010081985D /* SceneDelegate.swift */; };
 		82B9CF27276865010081985D /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF26276865010081985D /* TopViewController.swift */; };
@@ -118,6 +119,7 @@
 		8246547427880FD2002BD067 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		8246548127881D64002BD067 /* 1 Abraham.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "1 Abraham.otf"; sourceTree = "<group>"; };
 		8246548F278821F3002BD067 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		82873FDB2797B25000024290 /* bananaslipplus.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bananaslipplus.otf; sourceTree = "<group>"; };
 		82B9CF1F276865010081985D /* Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Money.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B9CF22276865010081985D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82B9CF24276865010081985D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -258,10 +260,35 @@
 		8246547127880F1B002BD067 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				8246547227880F5D002BD067 /* DISPLAY FREE TFB.ttf */,
-				8246548127881D64002BD067 /* 1 Abraham.otf */,
+				82873FD92797B25000024290 /* bananaslip_plus */,
+				82873FC12797AF0600024290 /* degital */,
+				82873FC22797AF1200024290 /* abraham */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		82873FC12797AF0600024290 /* degital */ = {
+			isa = PBXGroup;
+			children = (
+				8246547227880F5D002BD067 /* DISPLAY FREE TFB.ttf */,
+			);
+			path = degital;
+			sourceTree = "<group>";
+		};
+		82873FC22797AF1200024290 /* abraham */ = {
+			isa = PBXGroup;
+			children = (
+				8246548127881D64002BD067 /* 1 Abraham.otf */,
+			);
+			path = abraham;
+			sourceTree = "<group>";
+		};
+		82873FD92797B25000024290 /* bananaslip_plus */ = {
+			isa = PBXGroup;
+			children = (
+				82873FDB2797B25000024290 /* bananaslipplus.otf */,
+			);
+			path = bananaslip_plus;
 			sourceTree = "<group>";
 		};
 		82B9CF16276865010081985D = {
@@ -668,6 +695,7 @@
 			files = (
 				82B9CF2F276865080081985D /* LaunchScreen.storyboard in Resources */,
 				8246547327880F5D002BD067 /* DISPLAY FREE TFB.ttf in Resources */,
+				82873FDD2797B25000024290 /* bananaslipplus.otf in Resources */,
 				82B9CF99276B6AD00081985D /* GoogleService-Info.plist in Resources */,
 				82B9CF2C276865080081985D /* Assets.xcassets in Resources */,
 				8246548827881D65002BD067 /* 1 Abraham.otf in Resources */,

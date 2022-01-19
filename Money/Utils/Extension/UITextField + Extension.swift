@@ -8,12 +8,11 @@ extension UITextField {
         let textField = UITextField()
         textField.placeholder = placeholder
         textField.layer.cornerRadius = 5
-        textField.layer.borderColor = UIColor.white.cgColor
-        textField.layer.borderWidth = 1.5
         textField.leftView = leftView
         textField.leftViewMode = .always
         textField.textAlignment = .left
-        textField.textColor = .white
+        textField.backgroundColor = .customNavyBlue().withAlphaComponent(0.1)
+        textField.textColor = .customNavyBlue()
         return textField
     }
     

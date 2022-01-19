@@ -8,7 +8,7 @@ class BaseTableView: UITableView {
         rowHeight = 70
         showsVerticalScrollIndicator = false
         backgroundColor = .customNavyBlue()
-        separatorColor = .white
+        separatorColor = .white.withAlphaComponent(0.5)
     }
     
     required init?(coder: NSCoder) {

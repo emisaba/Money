@@ -22,7 +22,7 @@ class CustomAlert: UIView {
     private let priceTextField = UITextField.createTextField(placeholder: "")
     
     private lazy var okButton = createButton(text: "OK", selector: #selector(didTapOkButton))
-    private lazy var cancelButton = createButton(text: "cancel", selector: #selector(didTapCancelButton))
+    private lazy var cancelButton = createButton(text: "CANCEL", selector: #selector(didTapCancelButton))
 
     public var editCompletion: ((IncomeInfo) -> Void)?
     
@@ -138,7 +138,7 @@ class CustomAlert: UIView {
         button.addTarget(self, action: selector, for: .touchUpInside)
         button.clipsToBounds = true
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 20), .kern: 3, .foregroundColor: UIColor.white]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 2, .foregroundColor: UIColor.white]
         let attributedTitle = NSAttributedString(string: text, attributes: attributes)
         button.setAttributedTitle(attributedTitle, for: .normal)
         
@@ -147,8 +147,8 @@ class CustomAlert: UIView {
     
     func setItemInfo(info: ItemInfo) {
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.customNavyBlue(),
-                                                         .font: UIFont.abraham(size: 18),
-                                                         .kern: 2]
+                                                         .font: UIFont.banana(size: 18),
+                                                         .kern: 1]
         nameTextField.attributedText = NSAttributedString(string: info.name, attributes: attributes)
         priceTextField.attributedText = NSAttributedString(string: "\(info.price)", attributes: attributes)
     }

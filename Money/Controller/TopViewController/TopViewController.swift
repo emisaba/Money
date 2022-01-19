@@ -14,9 +14,8 @@ class TopViewController: UIViewController {
         tv.dataSource = self
         tv.register(TopViewCell.self, forCellReuseIdentifier: shoppingListIdentifier)
         tv.bounces = false
-        tv.separatorColor = .white
         
-        let headerFrame = CGRect(x: 0, y: 0, width: view.frame.width,  height: 307)
+        let headerFrame = CGRect(x: 0, y: 0, width: view.frame.width,  height: 319)
         topViewHeader = TopViewHeader(frame: headerFrame)
         topViewHeader?.delegate = self
         
@@ -224,7 +223,7 @@ class TopViewController: UIViewController {
     // MARK: - Helper
     
     func configureUI() {
-        view.backgroundColor = .customLightNavyBlue()
+        view.backgroundColor = .customWhite()
         
         view.addSubview(newItemInputView)
         newItemInputView.anchor(left: view.leftAnchor,

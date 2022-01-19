@@ -13,28 +13,36 @@ class CustomCheckBox: UIView {
     private lazy var checkBoxView: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1.5
+        
         button.addTarget(self, action: #selector(didTapSquare), for: .touchUpInside)
+        let borderColor = isInput ? UIColor.customLightNavyBlue().cgColor : UIColor.white.cgColor
+        button.layer.borderColor = borderColor
+        
         return button
     }()
     
-    private let checkLabel: UILabel = {
+    private lazy var checkLabel: UILabel = {
         let label = UILabel()
         label.text = "✓"
         label.textAlignment = .center
         label.isHidden = true
-        label.textColor = .white
+        
+        let borderColor = isInput ? UIColor.customLightNavyBlue() : UIColor.white
+        label.textColor = borderColor
+        
         return label
     }()
     
     public var isChecked = false
+    private var isInput = false
     
     // MARK: - LifeCycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(frame: CGRect, isInput: Bool) {
+        self.isInput = isInput
         
+        super.init(frame: frame)
         configureUI()
     }
     
