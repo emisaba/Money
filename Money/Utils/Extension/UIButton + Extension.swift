@@ -27,7 +27,7 @@ extension UIButton {
         button.backgroundColor = .customLightNavyBlue()
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 17), .kern: 3, .foregroundColor: UIColor.white]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 17), .kern: 3, .foregroundColor: UIColor.white]
         let attributedTitle = NSAttributedString(string: text, attributes: attributes)
         button.setAttributedTitle(attributedTitle, for: .normal)
         

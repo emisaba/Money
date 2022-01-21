@@ -22,7 +22,7 @@ class CategeoryBar: UIView {
         cv.dataSource = self
         cv.register(CategoryBarCell.self, forCellWithReuseIdentifier: identifier)
         cv.backgroundColor = .customNavyBlue()
-        cv.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        cv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
         cv.showsHorizontalScrollIndicator = false
         return cv
     }()
@@ -30,39 +30,63 @@ class CategeoryBar: UIView {
     private var didSelectFromSelectedList = false
     private lazy var formarSelectedCell = defaultFormaerSelectedCell()
     
-    private var categories = [Category(data: ["imageUrl": ""])]
+    private var categories: [Category] = []
+    
+    private lazy var showCategoryListButton: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "add-line"), for: .normal)
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.cornerRadius = 27.5
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        button.addTarget(self, action: #selector(didTapCategoryListButton), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - LifeCycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        addSubview(showCategoryListButton)
+        showCategoryListButton.anchor(top: topAnchor,
+                                      left: leftAnchor,
+                                      paddingTop: 10,
+                                      paddingLeft: 15)
+        showCategoryListButton.setDimensions(height: 55, width: 55)
+        
         addSubview(collectionView)
-        collectionView.fillSuperview()
+        collectionView.anchor(top: topAnchor,
+                              left: showCategoryListButton.rightAnchor,
+                              bottom: bottomAnchor,
+                              right: rightAnchor,
+                              paddingLeft: 15)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Action
+    
+    @objc func didTapCategoryListButton() {
+        categeoryBarDelegate?.showCategoryView()
+    }
+    
     // MARK: - Helper
     
-    func reloadCollectionViewAfterNewCategorySelected(imageUrl: String) {
-        let newCategory = Category(data: ["imageUrl": imageUrl])
-        categories.append(newCategory)
-        collectionView.reloadData()
-        
+    func selectNewCategory(categories: [Category]) {
         didSelectFromSelectedList = true
-    }
-    
-    func reloadCollectionViewAfterCategoryFetched(categories: [Category]) {
-        categories.forEach { self.categories.append($0) }
+        
+        self.categories = categories
         collectionView.reloadData()
     }
     
-    func shouldShowCategoryCell(cell: CategoryBarCell) {
-        categeoryBarDelegate?.showCategoryView()
-        cell.notSelectedUI()
+    func changeSpendingType(categories: [Category]) {
+        didSelectFromSelectedList = false
+        
+        self.categories = categories
+        collectionView.reloadData()
     }
     
     func defaultFormaerSelectedCell() -> CategoryBarCell {
@@ -84,14 +108,17 @@ extension CategeoryBar: UICollectionViewDataSource {
         
         if didSelectFromSelectedList {
             let selectedCell = indexPath.row == categories.count - 1
+            if selectedCell { cell.selectCategory(isSelected: true) }
+            
             cell.viewModel = CategoryBarViewModel(category: categories[indexPath.row],
-                                                  shouldSelect: selectedCell ? cell : nil,
+                                                  isSelected: selectedCell,
                                                   cellNumber: indexPath.row)
             
         } else {
-            let selectedCell = indexPath.row == 1
+            let firstCell = indexPath.row == 0
+            if firstCell { cell.selectCategory(isSelected: true) }
             cell.viewModel = CategoryBarViewModel(category: categories[indexPath.row],
-                                                  shouldSelect: selectedCell ? cell : nil,
+                                                  isSelected: firstCell,
                                                   cellNumber: indexPath.row)
         }
         
@@ -104,28 +131,15 @@ extension CategeoryBar: UICollectionViewDataSource {
 extension CategeoryBar: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedCell = collectionView.cellForItem(at:indexPath) as? CategoryBarCell else { return }
         
-        let shouldShowCalegoryList = indexPath.item == 0
-        let shouldDeselectDefaultSelectedCell = indexPath.item != 1
-        let shouldDeselectLastCell = indexPath.row != categories.count - 1 && didSelectFromSelectedList
-        
-        if shouldShowCalegoryList {
-            shouldShowCategoryCell(cell: selectedCell)
-            formarSelectedCell.isSelected = true
-            
-        } else if shouldDeselectLastCell {
-            let lastCellIndex = IndexPath(item: categories.count - 1, section: 0)
-            guard let defaultSelectedCell = collectionView.cellForItem(at: lastCellIndex) as? CategoryBarCell else { return }
-            defaultSelectedCell.isSelected = false
-            
-        } else if shouldDeselectDefaultSelectedCell {
-            let selectedCellIndex = IndexPath(item: 1, section: 0)
-            guard let defaultSelectedCell = collectionView.cellForItem(at: selectedCellIndex) as? CategoryBarCell else { return }
-            defaultSelectedCell.isSelected = false
+        for item in 0 ..< categories.count {
+            let indexPath = IndexPath(item: item, section: 0)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryBarCell else { return }
+            cell.selectCategory(isSelected: false)
         }
         
-        formarSelectedCell = selectedCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryBarCell else { return }
+        cell.selectCategory(isSelected: true)
     }
 }
 

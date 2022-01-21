@@ -16,7 +16,7 @@ class HistoryViewCell: UITableViewCell {
     
     private let nameLabel = UITextField.createLabelTextField(text: "")
     private let priceLabel = UITextField.createLabelTextField(text: "")
-    private lazy var selectButton = UIButton.createTextButton(text: " select",
+    private lazy var selectButton = UIButton.createTextButton(text: " 選択",
                                                               target: self,
                                                               selector: #selector(didTapSelectButton))
     private var alreadySelected = false
@@ -39,6 +39,13 @@ class HistoryViewCell: UITableViewCell {
         guard let cellNumber = viewModel?.cellNumber else { return }
         delegate?.selectItem(cellNumber: cellNumber,
                              shouldRemove: alreadySelected)
+        
+        if alreadySelected {
+            deSelectedUI()
+        } else {
+            selectedUI()
+        }
+        
         alreadySelected.toggle()
     }
     
@@ -54,13 +61,15 @@ class HistoryViewCell: UITableViewCell {
         nameLabel.centerY(inView: self)
         
         addSubview(priceLabel)
+        priceLabel.textAlignment = .left
         priceLabel.anchor(left: nameLabel.rightAnchor,
-                          paddingLeft: 30)
+                          paddingLeft: 30, width: 100)
         priceLabel.centerY(inView: self)
         
         contentView.addSubview(selectButton)
         selectButton.anchor(right: rightAnchor,
-                            paddingRight: 20)
+                            paddingRight: 10,
+                            width: 100)
         selectButton.centerY(inView: self)
     }
     
@@ -68,11 +77,28 @@ class HistoryViewCell: UITableViewCell {
         
         guard let viewModel = viewModel else { return }
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
-        nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: attributes)
+        let nameAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
+        nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: nameAttributes)
         
-        let priceAttributedText = NSMutableAttributedString(string: "￥  ")
-        priceAttributedText.append(NSAttributedString(string: "\(viewModel.price)", attributes: attributes))
+        let priceAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 18), .kern: 3]
+        let priceAttributedText = NSMutableAttributedString(string: "￥  ", attributes: nameAttributes)
+        priceAttributedText.append(NSAttributedString(string: "\(viewModel.price)", attributes: priceAttributes))
         priceLabel.attributedText = priceAttributedText
+    }
+    
+    func selectedUI() {
+        selectButton.backgroundColor = .white
+        
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 17), .kern: 3, .foregroundColor: UIColor.customNavyBlue()]
+        let attributedTitle = NSAttributedString(string: " 選択", attributes: attributes)
+        selectButton.setAttributedTitle(attributedTitle, for: .normal)
+    }
+    
+    func deSelectedUI() {
+        selectButton.backgroundColor = .customLightNavyBlue()
+        
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 17), .kern: 3, .foregroundColor: UIColor.white]
+        let attributedTitle = NSAttributedString(string: " 選択", attributes: attributes)
+        selectButton.setAttributedTitle(attributedTitle, for: .normal)
     }
 }

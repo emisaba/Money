@@ -12,7 +12,10 @@ extension DateFormatter {
     
     static func titleMonth(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "LLLL"
-        return formatter.string(from: date)
+        formatter.dateStyle = .full
+        formatter.locale = Locale(identifier: "ja_JP")
+        let dateString = formatter.string(from: date)
+        let monthString = dateString[dateString.index(dateString.startIndex, offsetBy: 5) ..< dateString.index(dateString.startIndex, offsetBy: 7)]
+        return String(monthString)
     }
 }

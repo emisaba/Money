@@ -30,25 +30,6 @@ class CategoryBarCell: CategoryCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override var isSelected: Bool {
-        didSet {
-            if viewModel?.cellNumber == 0 { return }
-            
-            imageView.backgroundColor = isSelected ? .customYellow() : .clear
-            historyButton.isHidden = isSelected ? false : true
-            
-            if isSelected {
-                guard let url = viewModel?.imageUrl?.absoluteString else { return }
-                delegate?.selectedCategoryUrl(url: url)
-            } else {
-                let image = imageView.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
-                imageView.setImage(image, for: .normal)
-                imageView.tintColor = .white
-                imageView.layer.borderWidth = 0
-            }
-        }
-    }
-    
     // MARK: - Action
     
     @objc func didTapHistoryButton() {
@@ -67,21 +48,24 @@ class CategoryBarCell: CategoryCell {
     
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
+        imageView.sd_setImage(with: viewModel.imageUrl, for: .normal, completed: nil)
         
-        if viewModel.cellNumber == 0 {
-            imageView.setImage(#imageLiteral(resourceName: "add-line"), for: .normal)
-            imageView.layer.borderWidth = 2
-            imageView.layer.borderColor = UIColor.white.cgColor
-        } else {
-            imageView.sd_setImage(with: viewModel.imageUrl, for: .normal, completed: nil)
-            self.isSelected = viewModel.shouldSelect ? true : false
+        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
+            let isSelected = viewModel.isSelected
+            self.selectCategory(isSelected: isSelected)
         }
     }
     
-    func notSelectedUI() {
-        if viewModel?.cellNumber == 0 { return }
+    func selectCategory(isSelected: Bool) {
+        let image = imageView.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+        imageView.setImage(image, for: .normal)
+        imageView.tintColor = isSelected ? .customNavyBlue() : .white
+        imageView.backgroundColor = isSelected ? .customYellow() : .clear
+        historyButton.isHidden = isSelected ? false : true
         
-        imageView.backgroundColor = .customYellow()
-        historyButton.isHidden = true
+        if isSelected {
+            guard let url = viewModel?.imageUrl?.absoluteString else { return }
+            delegate?.selectedCategoryUrl(url: url)
+        }
     }
 }

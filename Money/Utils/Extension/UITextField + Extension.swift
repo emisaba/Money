@@ -25,7 +25,7 @@ extension UITextField {
         textField.isUserInteractionEnabled = false
         textField.leftView = leftView
         textField.leftViewMode = .never
-        textField.textAlignment = .left
+        textField.textAlignment = .right
         return textField
     }
 }

@@ -5,7 +5,7 @@ class HistoryViewController: UIViewController {
     // MARK: - Properties
     
     public let mainImageView = UIButton.createImageView(image: #imageLiteral(resourceName: "add"), radius: 60)
-    public let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "close"), target: self, selector: #selector(didTapCloseButton))
+    public let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "old-close"), target: self, selector: #selector(didTapCloseButton))
     
     public let identifier = "identifier"
     private lazy var tableView: BaseTableView = {
@@ -17,13 +17,15 @@ class HistoryViewController: UIViewController {
         return tv
     }()
     
-    private let registerButton: UIButton = {
-        let registerButton = UIButton.createTextButton(text: "register", target: self, selector: #selector(didTapRegisterButton))
+    public let registerButton: UIButton = {
+        let registerButton = UIButton.createTextButton(text: "", target: self, selector: #selector(didTapRegisterButton))
         registerButton.layer.cornerRadius = 30
-        registerButton.backgroundColor = .customYellow()
+        registerButton.backgroundColor = .customLightNavyBlue()
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 26), .kern: 5, .foregroundColor: UIColor.customLightNavyBlue()]
-        let attributedTitle = NSAttributedString(string: "Register", attributes: attributes)
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 26),
+                                                         .foregroundColor: UIColor.white.withAlphaComponent(0.3),
+                                                         .kern: 2]
+        let attributedTitle = NSAttributedString(string: "登録", attributes: attributes)
         registerButton.setAttributedTitle(attributedTitle, for: .normal)
         return registerButton
     }()

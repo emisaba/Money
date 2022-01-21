@@ -4,9 +4,9 @@ class IncomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    public let titleLabel = UILabel.createBoldFontLabel(text: "Income", size: 26)
+    public let titleLabel = UILabel.createBoldFontLabel(text: "収入", size: 26)
     
-    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "close"), target: self, selector: #selector(didTapCloseButton))
+    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "old-close"), target: self, selector: #selector(didTapCloseButton))
     private let editButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "edit"), target: self, selector: #selector(didTapEditButton))
     private let addButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "add-line"), target: self, selector: #selector(didTapAddButton))
     
@@ -19,7 +19,7 @@ class IncomeViewController: UIViewController {
         return tv
     }()
     
-    public let backgroundView = UIView.createBackgroundView()
+    public lazy var backgroundView = UIView.createBackgroundView(target: self, action: #selector(didTapBackground))
     public lazy var incomeAlert: CustomAlert = {
         let alert = CustomAlert()
         alert.delegate = self
@@ -42,11 +42,6 @@ class IncomeViewController: UIViewController {
         fetchIncomes()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        dismissAlert()
-    }
-    
     // MARK: - API
     
     func registerIncome(incomeInfo: IncomeInfo) {
@@ -59,7 +54,6 @@ class IncomeViewController: UIViewController {
             
             self.fetchIncomes()
             self.dismissAlert()
-            self.view.endEditing(true)
         }
     }
     
@@ -87,7 +81,9 @@ class IncomeViewController: UIViewController {
     @objc func didTapCloseButton() {
         let extractPrice = incomes.map { $0.price }
         let incomeSome = extractPrice.reduce(0) { $0 + $1 }
+        
         priceSum?(incomeSome)
+        UserDefaults.standard.set(incomeSome, forKey: "incomeSome")
         
         dismiss(animated: true, completion: nil)
     }
@@ -99,6 +95,14 @@ class IncomeViewController: UIViewController {
     @objc func didTapAddButton() {
         incomeAlert.addIncome()
         showAlert()
+    }
+    
+    @objc func didTapBackground() {
+        view.endEditing(true)
+        
+        UIView.animate(withDuration: 0.25) {
+            self.incomeAlert.frame.origin.y += 80
+        }
     }
     
     // MARK: - Helper
@@ -145,9 +149,9 @@ class IncomeViewController: UIViewController {
         backgroundView.fillSuperview()
         
         view.addSubview(incomeAlert)
-        incomeAlert.centerX(inView: view)
-        incomeAlert.centerY(inView: view)
-        incomeAlert.setDimensions(height: 240, width: view.frame.width - 60)
+        incomeAlert.frame = CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 240)
+        incomeAlert.center.x = view.frame.width / 2
+        incomeAlert.center.y = view.frame.height / 2
     }
     
     func showAlert() {
@@ -159,10 +163,12 @@ class IncomeViewController: UIViewController {
     
     func dismissAlert() {
         view.endEditing(true)
+        incomeAlert.alreadyEditing = false
         
         UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut) {
             self.backgroundView.alpha = 0
             self.incomeAlert.alpha = 0
+            self.incomeAlert.center.y = self.view.frame.height / 2
         }
     }
 }

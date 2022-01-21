@@ -36,23 +36,25 @@ class IncomeViewCell: UITableViewCell {
         
         addSubview(priceLabel)
         priceLabel.anchor(right: rightAnchor, paddingRight: 20)
+        priceLabel.setDimensions(height: frame.height, width: 150)
         priceLabel.centerY(inView: self)
     }
     
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
-        nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: attributes)
+        let nameAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
+        nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: nameAttributes)
         
-        let priceAttributedText = NSMutableAttributedString(string: "￥  ")
-        priceAttributedText.append(NSAttributedString(string: "\(viewModel.price)", attributes: attributes))
+        let priceAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 18), .kern: 3]
+        let priceAttributedText = NSMutableAttributedString(string: "￥  ", attributes: nameAttributes)
+        priceAttributedText.append(NSAttributedString(string: "\(viewModel.price)", attributes: priceAttributes))
         priceLabel.attributedText = priceAttributedText
     }
     
     func returnIncomInfo() -> IncomeInfo? {
         guard let name = nameLabel.text else { return nil }
-        guard let price = priceLabel.text?.replacingOccurrences(of: "￥ ", with: "") else { return nil }
+        guard let price = priceLabel.text?.replacingOccurrences(of: "￥  ", with: "") else { return nil }
         guard let intPrice = Int(price) else { return nil }
         
         return IncomeInfo(name: name, price: intPrice)

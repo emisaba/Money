@@ -8,23 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		06803868BEB6AF0CE8558D7E /* Pods_Money.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E7CB66F03FBDE68D3FC566 /* Pods_Money.framework */; };
-		82043ECE2771977800D2C5DB /* SavingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ECD2771977800D2C5DB /* SavingViewModel.swift */; };
-		82043ED0277198CB00D2C5DB /* Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ECF277198CB00D2C5DB /* Saving.swift */; };
-		82043ED22771B59600D2C5DB /* SavingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ED12771B59600D2C5DB /* SavingService.swift */; };
-		82043ED42772C91000D2C5DB /* SavingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ED32772C91000D2C5DB /* SavingInfo.swift */; };
-		82043ED827786DBB00D2C5DB /* SavingMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ED727786DBB00D2C5DB /* SavingMonthViewController.swift */; };
-		82043EDA27786E7F00D2C5DB /* SavingMonthViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ED927786E7F00D2C5DB /* SavingMonthViewController + UITableViewDelegate.swift */; };
-		82043EDC27787C8A00D2C5DB /* SavingMonthViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EDB27787C8900D2C5DB /* SavingMonthViewCell.swift */; };
-		82043EE02778873500D2C5DB /* SavingMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EDF2778873500D2C5DB /* SavingMonthViewModel.swift */; };
-		82043EE22778893800D2C5DB /* SavingMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE12778893800D2C5DB /* SavingMonth.swift */; };
-		82043EE52778CF5300D2C5DB /* SavingCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE42778CF5200D2C5DB /* SavingCategoryViewController.swift */; };
-		82043EE72778D04E00D2C5DB /* SavingCategoryViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE62778D04E00D2C5DB /* SavingCategoryViewController + UITableViewDelegate.swift */; };
-		82043EE92778DF6400D2C5DB /* SavingCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE82778DF6300D2C5DB /* SavingCategoryViewCell.swift */; };
-		8246547327880F5D002BD067 /* DISPLAY FREE TFB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8246547227880F5D002BD067 /* DISPLAY FREE TFB.ttf */; };
+		82043ECE2771977800D2C5DB /* SpendingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ECD2771977800D2C5DB /* SpendingViewModel.swift */; };
+		82043ED0277198CB00D2C5DB /* Spending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ECF277198CB00D2C5DB /* Spending.swift */; };
+		82043ED22771B59600D2C5DB /* SpendingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ED12771B59600D2C5DB /* SpendingService.swift */; };
+		82043ED827786DBB00D2C5DB /* SpendingMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ED727786DBB00D2C5DB /* SpendingMonthViewController.swift */; };
+		82043EDA27786E7F00D2C5DB /* SpendingMonthViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043ED927786E7F00D2C5DB /* SpendingMonthViewController + UITableViewDelegate.swift */; };
+		82043EDC27787C8A00D2C5DB /* SpendingMonthViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EDB27787C8900D2C5DB /* SpendingMonthViewCell.swift */; };
+		82043EE02778873500D2C5DB /* SpendingMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EDF2778873500D2C5DB /* SpendingMonthViewModel.swift */; };
+		82043EE22778893800D2C5DB /* SpendingMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE12778893800D2C5DB /* SpendingMonth.swift */; };
+		82043EE52778CF5300D2C5DB /* SpendingCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE42778CF5200D2C5DB /* SpendingCategoryViewController.swift */; };
+		82043EE72778D04E00D2C5DB /* SpendingCategoryViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE62778D04E00D2C5DB /* SpendingCategoryViewController + UITableViewDelegate.swift */; };
+		82043EE92778DF6400D2C5DB /* SpendingCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82043EE82778DF6300D2C5DB /* SpendingCategoryViewCell.swift */; };
 		8246547527880FD2002BD067 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8246547427880FD2002BD067 /* UIFont + Extension.swift */; };
 		8246548827881D65002BD067 /* 1 Abraham.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8246548127881D64002BD067 /* 1 Abraham.otf */; };
 		82465490278821F3002BD067 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8246548F278821F3002BD067 /* UIColor + Extension.swift */; };
 		82873FDD2797B25000024290 /* bananaslipplus.otf in Resources */ = {isa = PBXBuildFile; fileRef = 82873FDB2797B25000024290 /* bananaslipplus.otf */; };
+		82873FF02798E5FF00024290 /* Let's go Digital Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82873FEF2798E5FF00024290 /* Let's go Digital Regular.ttf */; };
+		82873FF32798EDC500024290 /* SavingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82873FF22798EDC500024290 /* SavingViewController.swift */; };
+		82873FF52798EE3E00024290 /* SavingViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82873FF42798EE3E00024290 /* SavingViewController + UITableViewDelegate.swift */; };
+		82873FF82798EE9100024290 /* SavingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82873FF72798EE9100024290 /* SavingViewCell.swift */; };
+		82873FFA2799A32600024290 /* Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82873FF92799A32000024290 /* Saving.swift */; };
+		82873FFC2799A41100024290 /* SavingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82873FFB2799A41100024290 /* SavingService.swift */; };
+		828740002799A69100024290 /* SavingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82873FFF2799A69100024290 /* SavingInfo.swift */; };
+		828740022799A7E900024290 /* SpendingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828740012799A7E900024290 /* SpendingInfo.swift */; };
+		828740042799AD8F00024290 /* SavingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828740032799AD8F00024290 /* SavingViewModel.swift */; };
+		82874006279A79AF00024290 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82874005279A79AF00024290 /* UIViewController + Extension.swift */; };
+		82874008279AA47700024290 /* CategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82874007279AA47700024290 /* CategoryInfo.swift */; };
 		82B9CF23276865010081985D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF22276865010081985D /* AppDelegate.swift */; };
 		82B9CF25276865010081985D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF24276865010081985D /* SceneDelegate.swift */; };
 		82B9CF27276865010081985D /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF26276865010081985D /* TopViewController.swift */; };
@@ -60,10 +69,10 @@
 		82B9CF83276B06190081985D /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF82276B06180081985D /* BaseTableView.swift */; };
 		82B9CF86276B07520081985D /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF85276B07520081985D /* UIImageView + Extension.swift */; };
 		82B9CF88276B0DDB0081985D /* HistoryViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF87276B0DDB0081985D /* HistoryViewController + UITableViewDelegate.swift */; };
-		82B9CF8A276B0E700081985D /* SavingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF89276B0E700081985D /* SavingViewCell.swift */; };
+		82B9CF8A276B0E700081985D /* SpendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF89276B0E700081985D /* SpendingCell.swift */; };
 		82B9CF8D276B50130081985D /* IncomeViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF8C276B50130081985D /* IncomeViewController + UITableViewDelegate.swift */; };
-		82B9CF91276B59FA0081985D /* SavingTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF90276B59FA0081985D /* SavingTopViewController.swift */; };
-		82B9CF92276B59FA0081985D /* SavingTopViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF8F276B59FA0081985D /* SavingTopViewController + UITableViewDelegate.swift */; };
+		82B9CF91276B59FA0081985D /* SpendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF90276B59FA0081985D /* SpendingViewController.swift */; };
+		82B9CF92276B59FA0081985D /* SpendingViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF8F276B59FA0081985D /* SpendingViewController + UITableViewDelegate.swift */; };
 		82B9CF97276B5D540081985D /* HistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF96276B5D540081985D /* HistoryViewCell.swift */; };
 		82B9CF99276B6AD00081985D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82B9CF98276B6ACF0081985D /* GoogleService-Info.plist */; };
 		82B9CF9B276B6CF60081985D /* IncomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B9CF9A276B6CF50081985D /* IncomeService.swift */; };
@@ -103,23 +112,32 @@
 
 /* Begin PBXFileReference section */
 		57E7CB66F03FBDE68D3FC566 /* Pods_Money.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Money.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		82043ECD2771977800D2C5DB /* SavingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingViewModel.swift; sourceTree = "<group>"; };
-		82043ECF277198CB00D2C5DB /* Saving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saving.swift; sourceTree = "<group>"; };
-		82043ED12771B59600D2C5DB /* SavingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingService.swift; sourceTree = "<group>"; };
-		82043ED32772C91000D2C5DB /* SavingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingInfo.swift; sourceTree = "<group>"; };
-		82043ED727786DBB00D2C5DB /* SavingMonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingMonthViewController.swift; sourceTree = "<group>"; };
-		82043ED927786E7F00D2C5DB /* SavingMonthViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavingMonthViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		82043EDB27787C8900D2C5DB /* SavingMonthViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingMonthViewCell.swift; sourceTree = "<group>"; };
-		82043EDF2778873500D2C5DB /* SavingMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingMonthViewModel.swift; sourceTree = "<group>"; };
-		82043EE12778893800D2C5DB /* SavingMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingMonth.swift; sourceTree = "<group>"; };
-		82043EE42778CF5200D2C5DB /* SavingCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingCategoryViewController.swift; sourceTree = "<group>"; };
-		82043EE62778D04E00D2C5DB /* SavingCategoryViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavingCategoryViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		82043EE82778DF6300D2C5DB /* SavingCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingCategoryViewCell.swift; sourceTree = "<group>"; };
-		8246547227880F5D002BD067 /* DISPLAY FREE TFB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DISPLAY FREE TFB.ttf"; sourceTree = "<group>"; };
+		82043ECD2771977800D2C5DB /* SpendingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingViewModel.swift; sourceTree = "<group>"; };
+		82043ECF277198CB00D2C5DB /* Spending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spending.swift; sourceTree = "<group>"; };
+		82043ED12771B59600D2C5DB /* SpendingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingService.swift; sourceTree = "<group>"; };
+		82043ED727786DBB00D2C5DB /* SpendingMonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingMonthViewController.swift; sourceTree = "<group>"; };
+		82043ED927786E7F00D2C5DB /* SpendingMonthViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpendingMonthViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		82043EDB27787C8900D2C5DB /* SpendingMonthViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingMonthViewCell.swift; sourceTree = "<group>"; };
+		82043EDF2778873500D2C5DB /* SpendingMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingMonthViewModel.swift; sourceTree = "<group>"; };
+		82043EE12778893800D2C5DB /* SpendingMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingMonth.swift; sourceTree = "<group>"; };
+		82043EE42778CF5200D2C5DB /* SpendingCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingCategoryViewController.swift; sourceTree = "<group>"; };
+		82043EE62778D04E00D2C5DB /* SpendingCategoryViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpendingCategoryViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		82043EE82778DF6300D2C5DB /* SpendingCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingCategoryViewCell.swift; sourceTree = "<group>"; };
 		8246547427880FD2002BD067 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		8246548127881D64002BD067 /* 1 Abraham.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "1 Abraham.otf"; sourceTree = "<group>"; };
 		8246548F278821F3002BD067 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		82873FDB2797B25000024290 /* bananaslipplus.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bananaslipplus.otf; sourceTree = "<group>"; };
+		82873FEF2798E5FF00024290 /* Let's go Digital Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Let's go Digital Regular.ttf"; sourceTree = "<group>"; };
+		82873FF22798EDC500024290 /* SavingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingViewController.swift; sourceTree = "<group>"; };
+		82873FF42798EE3E00024290 /* SavingViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavingViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		82873FF72798EE9100024290 /* SavingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingViewCell.swift; sourceTree = "<group>"; };
+		82873FF92799A32000024290 /* Saving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saving.swift; sourceTree = "<group>"; };
+		82873FFB2799A41100024290 /* SavingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingService.swift; sourceTree = "<group>"; };
+		82873FFF2799A69100024290 /* SavingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingInfo.swift; sourceTree = "<group>"; };
+		828740012799A7E900024290 /* SpendingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingInfo.swift; sourceTree = "<group>"; };
+		828740032799AD8F00024290 /* SavingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingViewModel.swift; sourceTree = "<group>"; };
+		82874005279A79AF00024290 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		82874007279AA47700024290 /* CategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInfo.swift; sourceTree = "<group>"; };
 		82B9CF1F276865010081985D /* Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Money.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B9CF22276865010081985D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82B9CF24276865010081985D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,10 +175,10 @@
 		82B9CF82276B06180081985D /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		82B9CF85276B07520081985D /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		82B9CF87276B0DDB0081985D /* HistoryViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		82B9CF89276B0E700081985D /* SavingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingViewCell.swift; sourceTree = "<group>"; };
+		82B9CF89276B0E700081985D /* SpendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingCell.swift; sourceTree = "<group>"; };
 		82B9CF8C276B50130081985D /* IncomeViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IncomeViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		82B9CF8F276B59FA0081985D /* SavingTopViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavingTopViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		82B9CF90276B59FA0081985D /* SavingTopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingTopViewController.swift; sourceTree = "<group>"; };
+		82B9CF8F276B59FA0081985D /* SpendingViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpendingViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		82B9CF90276B59FA0081985D /* SpendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingViewController.swift; sourceTree = "<group>"; };
 		82B9CF96276B5D540081985D /* HistoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryViewCell.swift; path = Money/Controller/IncomViewController/HistoryViewCell.swift; sourceTree = SOURCE_ROOT; };
 		82B9CF98276B6ACF0081985D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82B9CF9A276B6CF50081985D /* IncomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeService.swift; sourceTree = "<group>"; };
@@ -221,58 +239,50 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		82043ED527786CF100D2C5DB /* SavingMonthController */ = {
+		82043ED527786CF100D2C5DB /* SpendingMonthController */ = {
 			isa = PBXGroup;
 			children = (
-				82043ED727786DBB00D2C5DB /* SavingMonthViewController.swift */,
-				82043ED927786E7F00D2C5DB /* SavingMonthViewController + UITableViewDelegate.swift */,
+				82043ED727786DBB00D2C5DB /* SpendingMonthViewController.swift */,
+				82043ED927786E7F00D2C5DB /* SpendingMonthViewController + UITableViewDelegate.swift */,
 			);
-			path = SavingMonthController;
+			path = SpendingMonthController;
 			sourceTree = "<group>";
 		};
-		82043ED627786D3B00D2C5DB /* SavingTopViewController */ = {
+		82043ED627786D3B00D2C5DB /* SpendingTopViewController */ = {
 			isa = PBXGroup;
 			children = (
-				82B9CF90276B59FA0081985D /* SavingTopViewController.swift */,
-				82B9CF8F276B59FA0081985D /* SavingTopViewController + UITableViewDelegate.swift */,
+				82B9CF90276B59FA0081985D /* SpendingViewController.swift */,
+				82B9CF8F276B59FA0081985D /* SpendingViewController + UITableViewDelegate.swift */,
 			);
-			path = SavingTopViewController;
+			path = SpendingTopViewController;
 			sourceTree = "<group>";
 		};
-		82043EE32778BA9600D2C5DB /* SavingViewModel */ = {
+		82043EE32778BA9600D2C5DB /* SpendingViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				82043ECD2771977800D2C5DB /* SavingViewModel.swift */,
-				82043EDF2778873500D2C5DB /* SavingMonthViewModel.swift */,
+				82043ECD2771977800D2C5DB /* SpendingViewModel.swift */,
+				82043EDF2778873500D2C5DB /* SpendingMonthViewModel.swift */,
 			);
-			path = SavingViewModel;
+			path = SpendingViewModel;
 			sourceTree = "<group>";
 		};
-		82043EEA2778E24A00D2C5DB /* SavingCategoryViewController */ = {
+		82043EEA2778E24A00D2C5DB /* SpendingCategoryViewController */ = {
 			isa = PBXGroup;
 			children = (
-				82043EE42778CF5200D2C5DB /* SavingCategoryViewController.swift */,
-				82043EE62778D04E00D2C5DB /* SavingCategoryViewController + UITableViewDelegate.swift */,
+				82043EE42778CF5200D2C5DB /* SpendingCategoryViewController.swift */,
+				82043EE62778D04E00D2C5DB /* SpendingCategoryViewController + UITableViewDelegate.swift */,
 			);
-			path = SavingCategoryViewController;
+			path = SpendingCategoryViewController;
 			sourceTree = "<group>";
 		};
 		8246547127880F1B002BD067 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				82873FEA2798E51800024290 /* Let_s_go_Digital */,
 				82873FD92797B25000024290 /* bananaslip_plus */,
-				82873FC12797AF0600024290 /* degital */,
 				82873FC22797AF1200024290 /* abraham */,
 			);
 			path = Font;
-			sourceTree = "<group>";
-		};
-		82873FC12797AF0600024290 /* degital */ = {
-			isa = PBXGroup;
-			children = (
-				8246547227880F5D002BD067 /* DISPLAY FREE TFB.ttf */,
-			);
-			path = degital;
 			sourceTree = "<group>";
 		};
 		82873FC22797AF1200024290 /* abraham */ = {
@@ -289,6 +299,31 @@
 				82873FDB2797B25000024290 /* bananaslipplus.otf */,
 			);
 			path = bananaslip_plus;
+			sourceTree = "<group>";
+		};
+		82873FEA2798E51800024290 /* Let_s_go_Digital */ = {
+			isa = PBXGroup;
+			children = (
+				82873FEF2798E5FF00024290 /* Let's go Digital Regular.ttf */,
+			);
+			path = Let_s_go_Digital;
+			sourceTree = "<group>";
+		};
+		82873FF12798ED6200024290 /* SavingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82873FF22798EDC500024290 /* SavingViewController.swift */,
+				82873FF42798EE3E00024290 /* SavingViewController + UITableViewDelegate.swift */,
+			);
+			path = SavingViewController;
+			sourceTree = "<group>";
+		};
+		82873FF62798EE4900024290 /* SavingViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				82873FF72798EE9100024290 /* SavingViewCell.swift */,
+			);
+			path = SavingViewCell;
 			sourceTree = "<group>";
 		};
 		82B9CF16276865010081985D = {
@@ -350,7 +385,8 @@
 				82B9CFC5276CCD4C0081985D /* ItemService.swift */,
 				82B9CFD2276DB5550081985D /* BudgetService.swift */,
 				82B9CFDE277021FB0081985D /* HistoryService.swift */,
-				82043ED12771B59600D2C5DB /* SavingService.swift */,
+				82043ED12771B59600D2C5DB /* SpendingService.swift */,
+				82873FFB2799A41100024290 /* SavingService.swift */,
 				82B9CFB7276C4C550081985D /* ImageUploader.swift */,
 			);
 			path = API;
@@ -360,9 +396,10 @@
 			isa = PBXGroup;
 			children = (
 				82B9CF72276A09BD0081985D /* TopViewController */,
-				82B9CF73276A09D10081985D /* IncomViewController */,
-				82B9CF8E276B59FA0081985D /* SavingViewController */,
 				82B9CF78276A0C490081985D /* HistoryViewController */,
+				82B9CF73276A09D10081985D /* IncomViewController */,
+				82B9CF8E276B59FA0081985D /* SpendingViewController */,
+				82873FF12798ED6200024290 /* SavingViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -378,7 +415,8 @@
 				82B9CF632769E8820081985D /* TopViewCell */,
 				82B9CF93276B5A540081985D /* HistoryViewCell */,
 				82B9CFA7276B74590081985D /* IncomeViewCell */,
-				82B9CF8B276B0E760081985D /* SavingViewCell */,
+				82B9CF8B276B0E760081985D /* SpendingViewCell */,
+				82873FF62798EE4900024290 /* SavingViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -390,7 +428,8 @@
 				82B9CFA5276B73E10081985D /* IncomeViewModel.swift */,
 				82B9CFBF276CBCD00081985D /* ItemViewModel.swift */,
 				82B9CFE22770445B0081985D /* HistoryItemViewModel.swift */,
-				82043EE32778BA9600D2C5DB /* SavingViewModel */,
+				828740032799AD8F00024290 /* SavingViewModel.swift */,
+				82043EE32778BA9600D2C5DB /* SpendingViewModel */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -403,8 +442,9 @@
 				82B9CFE027702CD80081985D /* HistoryItem.swift */,
 				82B9CFB3276C49D70081985D /* Category.swift */,
 				82B9CFD6276DB8840081985D /* Budget.swift */,
-				82043ECF277198CB00D2C5DB /* Saving.swift */,
-				82043EE12778893800D2C5DB /* SavingMonth.swift */,
+				82043ECF277198CB00D2C5DB /* Spending.swift */,
+				82873FF92799A32000024290 /* Saving.swift */,
+				82043EE12778893800D2C5DB /* SpendingMonth.swift */,
 				82B9CF9C276B6D2F0081985D /* APIHelper */,
 			);
 			path = Model;
@@ -431,6 +471,7 @@
 				82B9CFD8276DEEF30081985D /* DateFormatter + Extension.swift */,
 				8246547427880FD2002BD067 /* UIFont + Extension.swift */,
 				8246548F278821F3002BD067 /* UIColor + Extension.swift */,
+				82874005279A79AF00024290 /* UIViewController + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -555,24 +596,24 @@
 			path = BaseTableView;
 			sourceTree = "<group>";
 		};
-		82B9CF8B276B0E760081985D /* SavingViewCell */ = {
+		82B9CF8B276B0E760081985D /* SpendingViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				82B9CF89276B0E700081985D /* SavingViewCell.swift */,
-				82043EDB27787C8900D2C5DB /* SavingMonthViewCell.swift */,
-				82043EE82778DF6300D2C5DB /* SavingCategoryViewCell.swift */,
+				82B9CF89276B0E700081985D /* SpendingCell.swift */,
+				82043EDB27787C8900D2C5DB /* SpendingMonthViewCell.swift */,
+				82043EE82778DF6300D2C5DB /* SpendingCategoryViewCell.swift */,
 			);
-			path = SavingViewCell;
+			path = SpendingViewCell;
 			sourceTree = "<group>";
 		};
-		82B9CF8E276B59FA0081985D /* SavingViewController */ = {
+		82B9CF8E276B59FA0081985D /* SpendingViewController */ = {
 			isa = PBXGroup;
 			children = (
-				82043ED627786D3B00D2C5DB /* SavingTopViewController */,
-				82043ED527786CF100D2C5DB /* SavingMonthController */,
-				82043EEA2778E24A00D2C5DB /* SavingCategoryViewController */,
+				82043ED627786D3B00D2C5DB /* SpendingTopViewController */,
+				82043ED527786CF100D2C5DB /* SpendingMonthController */,
+				82043EEA2778E24A00D2C5DB /* SpendingCategoryViewController */,
 			);
-			path = SavingViewController;
+			path = SpendingViewController;
 			sourceTree = "<group>";
 		};
 		82B9CF93276B5A540081985D /* HistoryViewCell */ = {
@@ -589,7 +630,9 @@
 				82B9CF9D276B6D460081985D /* IncomeInfo.swift */,
 				82B9CFC9276CF8B00081985D /* ItemInfo.swift */,
 				82B9CFD4276DB72B0081985D /* BudgetInfo.swift */,
-				82043ED32772C91000D2C5DB /* SavingInfo.swift */,
+				82873FFF2799A69100024290 /* SavingInfo.swift */,
+				828740012799A7E900024290 /* SpendingInfo.swift */,
+				82874007279AA47700024290 /* CategoryInfo.swift */,
 			);
 			path = APIHelper;
 			sourceTree = "<group>";
@@ -694,8 +737,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				82B9CF2F276865080081985D /* LaunchScreen.storyboard in Resources */,
-				8246547327880F5D002BD067 /* DISPLAY FREE TFB.ttf in Resources */,
 				82873FDD2797B25000024290 /* bananaslipplus.otf in Resources */,
+				82873FF02798E5FF00024290 /* Let's go Digital Regular.ttf in Resources */,
 				82B9CF99276B6AD00081985D /* GoogleService-Info.plist in Resources */,
 				82B9CF2C276865080081985D /* Assets.xcassets in Resources */,
 				8246548827881D65002BD067 /* 1 Abraham.otf in Resources */,
@@ -760,34 +803,39 @@
 				82B9CFA6276B73E10081985D /* IncomeViewModel.swift in Sources */,
 				82B9CF75276A09FF0081985D /* IncomViewController.swift in Sources */,
 				82B9CFC0276CBCD00081985D /* ItemViewModel.swift in Sources */,
-				82043EE22778893800D2C5DB /* SavingMonth.swift in Sources */,
+				82043EE22778893800D2C5DB /* SpendingMonth.swift in Sources */,
 				82B9CF582768CDF50081985D /* UITextField + Extension.swift in Sources */,
-				82043EE52778CF5300D2C5DB /* SavingCategoryViewController.swift in Sources */,
+				82043EE52778CF5300D2C5DB /* SpendingCategoryViewController.swift in Sources */,
 				82B9CF7C276A32D10081985D /* CustomAlertView.swift in Sources */,
 				82B9CF88276B0DDB0081985D /* HistoryViewController + UITableViewDelegate.swift in Sources */,
 				82B9CFC4276CC4B90081985D /* TopViewHeader + CustomSegmentControlDelegate.swift in Sources */,
-				82B9CF91276B59FA0081985D /* SavingTopViewController.swift in Sources */,
+				82B9CF91276B59FA0081985D /* SpendingViewController.swift in Sources */,
 				82B9CFB0276C450F0081985D /* CategoryListCell.swift in Sources */,
-				82043ED827786DBB00D2C5DB /* SavingMonthViewController.swift in Sources */,
+				82873FF82798EE9100024290 /* SavingViewCell.swift in Sources */,
+				82043ED827786DBB00D2C5DB /* SpendingMonthViewController.swift in Sources */,
 				82B9CFE127702CD80081985D /* HistoryItem.swift in Sources */,
+				82873FF32798EDC500024290 /* SavingViewController.swift in Sources */,
 				82B9CFBA276C50590081985D /* CategoryBarCell.swift in Sources */,
+				828740022799A7E900024290 /* SpendingInfo.swift in Sources */,
 				82B9CFCA276CF8B00081985D /* ItemInfo.swift in Sources */,
 				82B9CF83276B06190081985D /* BaseTableView.swift in Sources */,
 				82465490278821F3002BD067 /* UIColor + Extension.swift in Sources */,
-				82043ECE2771977800D2C5DB /* SavingViewModel.swift in Sources */,
+				82043ECE2771977800D2C5DB /* SpendingViewModel.swift in Sources */,
 				82B9CF6F2769F9A00081985D /* CategoryListView.swift in Sources */,
 				82B9CF562768CD3A0081985D /* UIButton + Extension.swift in Sources */,
 				82B9CF7E276A38180081985D /* TopViewController + AlertDelegate.swift in Sources */,
 				82B9CFCF276D9F9D0081985D /* TopViewController + TopViewCellDelegate.swift in Sources */,
 				82B9CF97276B5D540081985D /* HistoryViewCell.swift in Sources */,
-				82043ED22771B59600D2C5DB /* SavingService.swift in Sources */,
+				82043ED22771B59600D2C5DB /* SpendingService.swift in Sources */,
 				82B9CF3D276865DA0081985D /* UIView + Extension.swift in Sources */,
 				82B9CFDD27700BFE0081985D /* HistoryViewController + HistoryViewCellDelegate.swift in Sources */,
 				82B9CF5E2769C61F0081985D /* TopViewController + KeyboardAnimation.swift in Sources */,
+				82874008279AA47700024290 /* CategoryInfo.swift in Sources */,
 				82B9CFB6276C4BB10081985D /* CategoryService.swift in Sources */,
+				82873FFC2799A41100024290 /* SavingService.swift in Sources */,
 				82B9CFC6276CCD4D0081985D /* ItemService.swift in Sources */,
 				82B9CFD7276DB8840081985D /* Budget.swift in Sources */,
-				82043EE72778D04E00D2C5DB /* SavingCategoryViewController + UITableViewDelegate.swift in Sources */,
+				82043EE72778D04E00D2C5DB /* SpendingCategoryViewController + UITableViewDelegate.swift in Sources */,
 				82B9CFA2276B6E5F0081985D /* Constants.swift in Sources */,
 				82B9CF542768CA6B0081985D /* CustomInputView.swift in Sources */,
 				82B9CFB2276C48460081985D /* TopViewController + CategoryListDelegate.swift in Sources */,
@@ -804,38 +852,42 @@
 				82B9CF23276865010081985D /* AppDelegate.swift in Sources */,
 				82B9CFDF277021FE0081985D /* HistoryService.swift in Sources */,
 				82B9CFBC276CB7BC0081985D /* Item.swift in Sources */,
-				82043EDA27786E7F00D2C5DB /* SavingMonthViewController + UITableViewDelegate.swift in Sources */,
+				82043EDA27786E7F00D2C5DB /* SpendingMonthViewController + UITableViewDelegate.swift in Sources */,
 				82B9CF6B2769F4EF0081985D /* CategoryCell.swift in Sources */,
-				82B9CF8A276B0E700081985D /* SavingViewCell.swift in Sources */,
+				82B9CF8A276B0E700081985D /* SpendingCell.swift in Sources */,
 				82B9CF80276AFA330081985D /* CategoryBarViewModel.swift in Sources */,
-				82043EE02778873500D2C5DB /* SavingMonthViewModel.swift in Sources */,
+				82043EE02778873500D2C5DB /* SpendingMonthViewModel.swift in Sources */,
 				82B9CF47276888540081985D /* CustomSegmentControl.swift in Sources */,
 				82B9CFAB276B76070081985D /* IncomeViewController + CustomAlertDelegate.swift in Sources */,
-				82043EE92778DF6400D2C5DB /* SavingCategoryViewCell.swift in Sources */,
+				82043EE92778DF6400D2C5DB /* SpendingCategoryViewCell.swift in Sources */,
 				82B9CF7A276A0C840081985D /* HistoryViewController.swift in Sources */,
 				82B9CF692769F23E0081985D /* CategoryBarView.swift in Sources */,
-				82043EDC27787C8A00D2C5DB /* SavingMonthViewCell.swift in Sources */,
+				82043EDC27787C8A00D2C5DB /* SpendingMonthViewCell.swift in Sources */,
 				82B9CFD1276DA0690081985D /* TopViewCell + CustomCheckBoxDelegate.swift in Sources */,
 				82B9CF512768A8640081985D /* TriangleView.swift in Sources */,
 				82B9CFD9276DEEF30081985D /* DateFormatter + Extension.swift in Sources */,
+				82874006279A79AF00024290 /* UIViewController + Extension.swift in Sources */,
 				82B9CFBE276CB9290081985D /* SpendingType.swift in Sources */,
 				82B9CF86276B07520081985D /* UIImageView + Extension.swift in Sources */,
 				82B9CFD5276DB72B0081985D /* BudgetInfo.swift in Sources */,
 				82B9CFAE276C2FFE0081985D /* CategoryImages.swift in Sources */,
 				82B9CFA9276B748C0081985D /* IncomeViewCell.swift in Sources */,
 				82B9CF71276A002A0081985D /* TopViewController + CategoryBarDelegate.swift in Sources */,
-				82043ED42772C91000D2C5DB /* SavingInfo.swift in Sources */,
 				8246547527880FD2002BD067 /* UIFont + Extension.swift in Sources */,
 				82B9CF25276865010081985D /* SceneDelegate.swift in Sources */,
-				82043ED0277198CB00D2C5DB /* Saving.swift in Sources */,
+				82043ED0277198CB00D2C5DB /* Spending.swift in Sources */,
 				82B9CFE32770445C0081985D /* HistoryItemViewModel.swift in Sources */,
 				82B9CF43276883270081985D /* TopViewController + TableViewDelegate.swift in Sources */,
-				82B9CF92276B59FA0081985D /* SavingTopViewController + UITableViewDelegate.swift in Sources */,
+				82B9CF92276B59FA0081985D /* SpendingViewController + UITableViewDelegate.swift in Sources */,
 				82B9CF622769E87C0081985D /* TopViewCell.swift in Sources */,
 				82B9CF45276884FE0081985D /* TopViewHeader + CollectionViewDelegate.swift in Sources */,
 				82B9CF77276A0B7A0081985D /* TopViewController + TopViewHeaderDelegate.swift in Sources */,
+				82873FF52798EE3E00024290 /* SavingViewController + UITableViewDelegate.swift in Sources */,
+				828740002799A69100024290 /* SavingInfo.swift in Sources */,
+				828740042799AD8F00024290 /* SavingViewModel.swift in Sources */,
 				82B9CFA4276B715E0081985D /* Income.swift in Sources */,
 				82B9CFC8276CF5F70081985D /* CustomInputView + CustomCheckBoxDelegate.swift in Sources */,
+				82873FFA2799A32600024290 /* Saving.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

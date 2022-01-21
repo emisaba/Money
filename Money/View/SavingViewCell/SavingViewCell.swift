@@ -1,6 +1,6 @@
 import UIKit
 
-class SavingViewCell: UITableViewCell {
+class SavingCell: UITableViewCell {
     
     // MARK: - Properties
     
@@ -44,17 +44,20 @@ class SavingViewCell: UITableViewCell {
         
         addSubview(priceLabel)
         priceLabel.anchor(right: nextPageButton.leftAnchor, paddingRight: 20)
+        priceLabel.setDimensions(height: frame.height, width: 150)
         priceLabel.centerY(inView: self)
     }
     
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
-        dateLabel.attributedText = NSAttributedString(string: viewModel.date, attributes: attributes)
+        let textAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 3]
+        let numberAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 18), .kern: 3]
         
-        let priceAttributedText = NSMutableAttributedString(string: "￥  ")
-        priceAttributedText.append(NSAttributedString(string: "\(viewModel.savingPrice)", attributes: attributes))
+        dateLabel.attributedText = NSAttributedString(string: viewModel.date, attributes: numberAttributes)
+    
+        let priceAttributedText = NSMutableAttributedString(string: "￥  ", attributes: textAttributes)
+        priceAttributedText.append(NSAttributedString(string: "\(viewModel.price)", attributes: numberAttributes))
         priceLabel.attributedText = priceAttributedText
     }
 }

@@ -9,7 +9,7 @@ extension UILabel {
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: size)
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: size), .kern: 3]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: size), .kern: 1]
         label.attributedText = NSAttributedString(string: text, attributes: attributes)
         
         return label

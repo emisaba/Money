@@ -1,14 +1,16 @@
 import UIKit
-import Firebase
 
 struct Saving {
-    let savingCost: Int
-    let categories: [String]
+    let savings: [SavingMonth]
+    let savingSum: Int
+}
+
+struct SavingMonth {
     let date: String
+    let price: Int
     
     init(data: [String: Any]) {
-        self.savingCost = data["savingCost"] as? Int ?? 0
-        self.categories = data["categories"] as? [String] ?? [""]
         self.date = data["date"] as? String ?? ""
+        self.price = data["price"] as? Int ?? 0
     }
 }

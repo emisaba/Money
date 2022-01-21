@@ -50,17 +50,19 @@ class TopViewCell: UITableViewCell {
         
         addSubview(priceLabel)
         priceLabel.anchor(right: rightAnchor, paddingRight: 20)
+        priceLabel.setDimensions(height: frame.height, width: 100)
         priceLabel.centerY(inView: self)
     }
     
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
-        nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: attributes)
+        let textAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
+        nameLabel.attributedText = NSAttributedString(string: viewModel.name, attributes: textAttributes)
         
-        let priceAttributedTextg = NSMutableAttributedString(string: "￥  ")
-        priceAttributedTextg.append(NSAttributedString(string: "\(viewModel.price)", attributes: attributes))
+        let numberAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 18), .kern: 3]
+        let priceAttributedTextg = NSMutableAttributedString(string: "￥  ", attributes: textAttributes)
+        priceAttributedTextg.append(NSAttributedString(string: "\(viewModel.price)", attributes: numberAttributes))
         priceLabel.attributedText = priceAttributedTextg
         
         squareView.topViewCellCheckValue(isChecked: viewModel.isChecked)

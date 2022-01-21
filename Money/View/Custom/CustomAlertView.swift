@@ -9,6 +9,7 @@ enum AlertType {
 protocol CustomAlertDelegate {
     func didTapOkButton(alert: CustomAlert)
     func didTapCancelButton()
+    func beginEditing()
 }
 
 class CustomAlert: UIView {
@@ -25,6 +26,7 @@ class CustomAlert: UIView {
     private lazy var cancelButton = createButton(text: "CANCEL", selector: #selector(didTapCancelButton))
 
     public var editCompletion: ((IncomeInfo) -> Void)?
+    public var alreadyEditing = false
     
     // MARK: - LifeCycle
     
@@ -64,7 +66,7 @@ class CustomAlert: UIView {
     func configureUI() {
         clipsToBounds = true
         layer.cornerRadius = 20
-        layer.borderWidth = 1
+        layer.borderWidth = 0.3
         layer.borderColor = UIColor.white.cgColor
         backgroundColor = .white
         
@@ -73,6 +75,34 @@ class CustomAlert: UIView {
     }
     
     func configureTextFieldUI() {
+        nameTextField.backgroundColor = .clear
+        nameTextField.delegate = self
+        
+        priceTextField.backgroundColor = .clear
+        priceTextField.delegate = self
+        
+        let textFieldStackViewFrame = UIView()
+        textFieldStackViewFrame.layer.borderColor = UIColor.customLightNavyBlue().withAlphaComponent(0.2).cgColor
+        textFieldStackViewFrame.layer.borderWidth = 1
+        textFieldStackViewFrame.layer.cornerRadius = 5
+        
+        addSubview(textFieldStackViewFrame)
+        textFieldStackViewFrame.anchor(top: topAnchor,
+                                       left: leftAnchor,
+                                       right: rightAnchor,
+                                       paddingTop: 15,
+                                       paddingLeft: 15,
+                                       paddingRight: 15,
+                                       height: 130)
+        
+        let textfieldDevider = UIView()
+        textfieldDevider.backgroundColor = .customLightNavyBlue().withAlphaComponent(0.2)
+        addSubview(textfieldDevider)
+        textfieldDevider.anchor(left: textFieldStackViewFrame.leftAnchor,
+                                right: textFieldStackViewFrame.rightAnchor,
+                                height: 1)
+        textfieldDevider.centerY(inView: textFieldStackViewFrame)
+        
         let textFieldStackView = UIStackView(arrangedSubviews: [nameTextField, priceTextField])
         textFieldStackView.axis = .vertical
         textFieldStackView.distribution = .fillEqually
@@ -85,29 +115,6 @@ class CustomAlert: UIView {
                                   paddingLeft: 20,
                                   paddingRight: 20,
                                   height: 120)
-        
-        let textFieldStackViewFrame = UIView()
-        textFieldStackViewFrame.layer.borderColor = UIColor.customLightNavyBlue().withAlphaComponent(0.2).cgColor
-        textFieldStackViewFrame.layer.borderWidth = 1
-        textFieldStackViewFrame.layer.cornerRadius = 5
-        
-        addSubview(textFieldStackViewFrame)
-        textFieldStackViewFrame.anchor(top: textFieldStackView.topAnchor,
-                                  left: textFieldStackView.leftAnchor,
-                                  bottom: textFieldStackView.bottomAnchor,
-                                  right: textFieldStackView.rightAnchor,
-                                  paddingTop: -5,
-                                  paddingLeft: -5,
-                                  paddingBottom: -5,
-                                  paddingRight: -5)
-        
-        let textfieldDevider = UIView()
-        textfieldDevider.backgroundColor = .customLightNavyBlue().withAlphaComponent(0.2)
-        addSubview(textfieldDevider)
-        textfieldDevider.anchor(left: textFieldStackViewFrame.leftAnchor,
-                                right: textFieldStackViewFrame.rightAnchor,
-                                height: 1)
-        textfieldDevider.centerY(inView: textFieldStackViewFrame)
     }
     
     func configureButtonUI() {
@@ -129,7 +136,7 @@ class CustomAlert: UIView {
         
         addSubview(buttonStackViewDivider)
         buttonStackViewDivider.anchor(bottom: bottomAnchor, paddingBottom: -2)
-        buttonStackViewDivider.setDimensions(height: 70, width: 1)
+        buttonStackViewDivider.setDimensions(height: 70, width: 0.4)
         buttonStackViewDivider.centerX(inView: buttonStackView)
     }
     
@@ -176,8 +183,22 @@ class CustomAlert: UIView {
     }
     
     func editIncome(info: IncomeInfo) {
-        nameTextField.text = info.name
-        priceTextField.text = "\(info.price)"
+        let nameAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
+        nameTextField.attributedText = NSAttributedString(string: info.name, attributes: nameAttributes)
+        
+        let priceAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 18), .kern: 3]
+        priceTextField.attributedText = NSAttributedString(string: "\(info.price)", attributes: priceAttributes)
+        
         alertType = .incomeEdit
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension CustomAlert: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if alreadyEditing { return }
+        alreadyEditing.toggle()
+        delegate?.beginEditing()
     }
 }

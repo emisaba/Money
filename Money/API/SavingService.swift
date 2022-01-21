@@ -1,37 +1,35 @@
 import UIKit
-import Firebase
 
 struct SavingService {
     
-    static func uploadSaving(savingInfo: SavingInfo, completion: @escaping(Error?) -> Void) {
-        
+    static var monthAndDateWithoutSlash: String {
         let date = DateFormatter.dateString(date: Date())
         let removeDay = date.dropLast(3)
         let documentTitle = removeDay.replacingOccurrences(of: "/", with: "")
-        
-        let data: [String: Any] = ["savingCost": savingInfo.cost,
-                                   "categories": savingInfo.categories,
-                                   "date": removeDay]
-        
-        COLLECTION_SAVING.document(documentTitle).setData(data, completion: completion)
+        return documentTitle
     }
     
-    static func fetchSaving(completion: @escaping([Saving]) -> Void) {
-        COLLECTION_SAVING.getDocuments { snapshot, _ in
+    static var monthAndDateWithSlash: String {
+        let date = DateFormatter.dateString(date: Date())
+        let removeDay = String(date.dropLast(3))
+        return removeDay
+    }
+    
+    static func uploadSaving(value: Int, completion: @escaping(Error?) -> Void) {
+        let data: [String: Any] = ["date": monthAndDateWithSlash, "price": value]
+        COLLECTION_SAVINGS.document(monthAndDateWithoutSlash).setData(data, completion: completion)
+    }
+    
+    static func fetchSaving(completion: @escaping(Saving) -> Void) {
+        COLLECTION_SAVINGS.getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
-            let savings = documents.map { Saving(data: $0.data()) }
-            completion(savings)
+            let savingMonth = documents.map { SavingMonth(data: $0.data()) }
+            let savingPrices = savingMonth.map { $0.price }
+            let savingSum = savingPrices.reduce(0) { $0 + $1 }
+            let saving = Saving(savings: savingMonth, savingSum: savingSum)
+            
+            completion(saving)
         }
-    }
-    
-    static func fetchSavingForCategories(category: String, completion: @escaping([Item]) -> Void) {
-        COLLECTION_ITEMS.whereField("categoryUrl", isEqualTo: category).getDocuments { snapshot, _ in
-                
-                guard let documents = snapshot?.documents else { return }
-                
-                let items = documents.map { Item(data: $0.data()) }
-                completion(items)
-            }
     }
 }

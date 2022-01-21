@@ -1,30 +1,35 @@
 import UIKit
 
 extension TopViewController: TopViewHeaderDelegate {
-    
-    func changeSavingValue(savingValue: Int) {
+    func uploadNewValues(spendingValue: Int, savingValue: Int) {
+        uploadSpending(savingValue: spendingValue)
         uploadSaving(savingValue: savingValue)
     }
 
     func changeSegmentedValue(spendingType: SpendingType) {
-        self.spendingType = spendingType
-        swapListCategory()
+        changeCategory(spendingType: spendingType)
     }
     
     func showIncomeView() {
         let vc = IncomeViewController()
         vc.modalPresentationStyle = .fullScreen
-        vc.isHeroEnabled = true
         vc.priceSum = { sum in
             self.topViewHeader?.setIncomePriceLabel(price: sum)
         }
         present(vc, animated: true, completion: nil)
     }
     
+    func showSpendingView() {
+        let vc = SpendingViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    
     func showSavingView() {
-        let vc = SavingTopViewController(savings: savings)
-        vc.modalPresentationStyle = .fullScreen
-//        vc.isHeroEnabled = true
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = SavingViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }

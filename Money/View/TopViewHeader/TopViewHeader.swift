@@ -2,14 +2,21 @@ import UIKit
 
 protocol TopViewHeaderDelegate {
     func showIncomeView()
+    func showSpendingView()
     func showSavingView()
     func changeSegmentedValue(spendingType: SpendingType)
-    func changeSavingValue(savingValue: Int)
+    func uploadNewValues(spendingValue: Int, savingValue: Int)
 }
 
 struct CalculateInfo {
     let income: Int
     let spending: Int
+}
+
+enum PriceType {
+    case income
+    case spending
+    case saving
 }
 
 class TopViewHeader: UIView {
@@ -23,14 +30,12 @@ class TopViewHeader: UIView {
     private var savingPriceLabel = UILabel()
     
     private let monthLabelText = DateFormatter.titleMonth(date: Date())
-    private lazy var monthLabel = UILabel.createBoldFontLabel(text: "1月", size: 30)
-    private lazy var incomeStackView = createStackView(moneyType: .income, isIncome: true)
-    private lazy var spendingStackView = createStackView(moneyType: .spending, isIncome: false)
-    private lazy var savingStackView = createStackView(moneyType: .saving, isIncome: false)
+    private lazy var monthLabel = UILabel.createBoldFontLabel(text: monthLabelText, size: 30)
+    private lazy var incomeStackView = createStackView(moneyType: .income, priceType: .income)
+    private lazy var spendingStackView = createStackView(moneyType: .spending, priceType: .spending)
+    private lazy var savingStackView = createStackView(moneyType: .saving, priceType: .saving)
     private lazy var minusSymbol = createSymbolLabel(symbol: "-")
     private lazy var equalSymbol = createSymbolLabel(symbol: "=")
-    
-    private let savingButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "close"), target: self, selector: #selector(didTapHistoryButton))
     
     public let categoryViewIdentifier = "identifier"
     private lazy var categoryView: UICollectionView = {
@@ -69,11 +74,15 @@ class TopViewHeader: UIView {
     
     // MARK: - Action
     
-    @objc func didTapIncome() {
+    @objc func showIncomeView() {
         delegate?.showIncomeView()
     }
     
-    @objc func didTapHistoryButton() {
+    @objc func showSpendingView() {
+        delegate?.showSpendingView()
+    }
+    
+    @objc func showSavingView() {
         delegate?.showSavingView()
     }
     
@@ -123,14 +132,9 @@ class TopViewHeader: UIView {
                               paddingTop: 30)
         segmentControl.centerX(inView: self)
         segmentControl.setDimensions(height: 60, width: 200)
-        
-        addSubview(savingButton)
-        savingButton.anchor(right: rightAnchor, paddingRight: frame.width - (frame.width - 150 / 4))
-        savingButton.centerY(inView: monthLabel)
-        savingButton.setDimensions(height: 50, width: 50)
     }
     
-    func createStackView(moneyType: MoneyType, isIncome: Bool) -> UIStackView {
+    func createStackView(moneyType: MoneyType, priceType: PriceType) -> UIStackView {
         
         let priceLabel = UILabel()
         
@@ -142,10 +146,10 @@ class TopViewHeader: UIView {
         case .saving:
             savingPriceLabel = priceLabel
         }
-        
-        priceLabel.text = "￥ 000"
+
         priceLabel.textColor = .white
-        priceLabel.font = .digitalFont(size: 20)
+        priceLabel.attributedText = createAttributesText(price: 000)
+        
         
         let titleLabel = UILabel()
         titleLabel.textAlignment = .left
@@ -155,11 +159,18 @@ class TopViewHeader: UIView {
         titleLabel.attributedText = NSAttributedString(string: moneyType.title, attributes: attributes)
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, priceLabel])
-        stackView.spacing = 12
+        stackView.spacing = 0
         stackView.axis = .vertical
         
-        if isIncome {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(didTapIncome))
+        switch priceType {
+        case .income:
+            let tap = UITapGestureRecognizer(target: self, action: #selector(showIncomeView))
+            stackView.addGestureRecognizer(tap)
+        case .spending:
+            let tap = UITapGestureRecognizer(target: self, action: #selector(showSpendingView))
+            stackView.addGestureRecognizer(tap)
+        case .saving:
+            let tap = UITapGestureRecognizer(target: self, action: #selector(showSavingView))
             stackView.addGestureRecognizer(tap)
         }
         
@@ -168,19 +179,19 @@ class TopViewHeader: UIView {
     
     func createSymbolLabel(symbol: String) -> UILabel {
         let label = UILabel()
-        label.text = symbol
-        label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .white
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.digitalFont(size: 26), .kern: 1]
+        label.attributedText = NSAttributedString(string: symbol, attributes: attributes)
         return label
     }
     
     func setIncomePriceLabel(price: Int) {
-        incomePriceLabel.text = "￥ \(price)"
+        incomePriceLabel.attributedText  = createAttributesText(price: price)
         calculateSaving(fromInput: true)
     }
     
     func setSpendingPriceLabel(price: Int) {
-        spendingPriceLabel.text = "￥ \(price)"
+        spendingPriceLabel.attributedText  = createAttributesText(price: price)
         calculateSaving(fromInput: false)
     }
     
@@ -188,9 +199,9 @@ class TopViewHeader: UIView {
         guard let budgetInfo = budgetStringToInt() else { return }
         
         let saving = budgetInfo.income - budgetInfo.spending
-        savingPriceLabel.text = "￥ \(saving)"
+        savingPriceLabel.attributedText  = createAttributesText(price: saving)
         
-        delegate?.changeSavingValue(savingValue: saving)
+        delegate?.uploadNewValues(spendingValue: budgetInfo.spending, savingValue: saving)
     }
     
     func budgetStringToInt() -> CalculateInfo? {
@@ -207,5 +218,13 @@ class TopViewHeader: UIView {
         guard let spending = Int(spendingString) else { return nil }
         
         return CalculateInfo(income: income, spending: spending)
+    }
+    
+    func createAttributesText(price: Int) -> NSAttributedString {
+        let enAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 16)]
+        let priceAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.digitalFont(size: 26), .kern: 1]
+        let priceText = NSMutableAttributedString(string: "￥ ", attributes: enAttribute)
+        priceText.append(NSAttributedString(string: "\(price)", attributes: priceAttribute))
+        return priceText
     }
 }

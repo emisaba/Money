@@ -12,6 +12,7 @@ target 'Money' do
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
   pod 'SDWebImage'
+  pod 'JGProgressHUD'
 
   # Pods for Money
 

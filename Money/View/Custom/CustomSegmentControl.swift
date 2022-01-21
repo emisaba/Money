@@ -10,8 +10,8 @@ class CustomSegmentControl: UIView {
     
     public var delegate: CustomSegmentControlDelegate?
     
-    private lazy var fixedButton = createTextButton(title: " 変動", selector: #selector(didTapFixedButton), isDefaultSelected: true)
-    private lazy var variableButton = createTextButton(title: " 固定", selector:  #selector(didTapVariableButton), isDefaultSelected: false)
+    private lazy var variableButton = createTextButton(title: " 変動", selector: #selector(didTapVariableButton), isDefaultSelected: true)
+    private lazy var fixedButton = createTextButton(title: " 固定", selector:  #selector(didTapFixedButton), isDefaultSelected: false)
     
     private lazy var selectedView: UIView = {
         let view = UIView()
@@ -38,7 +38,7 @@ class CustomSegmentControl: UIView {
                        initialSpringVelocity: 2,
                        options: .curveEaseInOut) {
             
-            self.selectedView.frame.origin.x = 0
+            self.selectedView.frame.origin.x = self.frame.width / 2
             
             self.fixedButton.setTitleColor(.customNavyBlue(), for: .normal)
             self.variableButton.setTitleColor(.white, for: .normal)
@@ -54,12 +54,11 @@ class CustomSegmentControl: UIView {
                        initialSpringVelocity: 2,
                        options: .curveEaseInOut) {
             
-            self.selectedView.frame.origin.x = self.frame.width / 2
+            self.selectedView.frame.origin.x = 0
             
             self.fixedButton.setTitleColor(.white, for: .normal)
             self.variableButton.setTitleColor(.customNavyBlue(), for: .normal)
         }
-        
     }
     
     // MARK: - Helper
@@ -71,7 +70,7 @@ class CustomSegmentControl: UIView {
                                     width: frame.width - (frame.width / 2 - 10),
                                     height: frame.height)
         
-        let stackView = UIStackView(arrangedSubviews: [fixedButton, variableButton])
+        let stackView = UIStackView(arrangedSubviews: [variableButton, fixedButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         

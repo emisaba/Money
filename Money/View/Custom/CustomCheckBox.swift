@@ -34,8 +34,10 @@ class CustomCheckBox: UIView {
         return label
     }()
     
-    public var isChecked = false
+    private var isChecked = false
     private var isInput = false
+    
+    private var didsetDefaultCheckValue = false
     
     // MARK: - LifeCycle
     
@@ -54,7 +56,6 @@ class CustomCheckBox: UIView {
     
     @objc func didTapSquare() {
         checkLabel.isHidden.toggle()
-        
         isChecked.toggle()
         delegate?.checkValue(isChecked: isChecked)
     }

@@ -6,10 +6,13 @@ public struct AnchoredConstraints {
 
 extension UIView {
     
-    static func createBackgroundView() -> UIView {
+    static func createBackgroundView(target: Any, action: Selector) -> UIView {
         let view = UIView()
         view.backgroundColor = .black.withAlphaComponent(0.6)
         view.alpha = 0
+        
+        let tapGesture = UITapGestureRecognizer(target: target, action: action)
+        view.addGestureRecognizer(tapGesture)
         return view
     }
     

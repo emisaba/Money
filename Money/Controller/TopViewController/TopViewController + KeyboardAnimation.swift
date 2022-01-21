@@ -13,6 +13,7 @@ extension TopViewController {
             print("###:\(height)")
             
             if isKeyboardShowing {
+                if shouldShowAlertView { return }
                 shoppingListViewTopConstraint?.isActive = true
                 shoppingListViewBottomConstraint?.isActive = true
                 newItemInputViewBottomConstraint?.isActive = true

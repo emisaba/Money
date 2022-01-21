@@ -34,7 +34,10 @@ class TopViewController: UIViewController {
     public var categeoryBar = CategeoryBar()
     public var selectedCategoryImageUrl: String = ""
     
-    public var spendingType: SpendingType = .fixed
+    public var spendingType: SpendingType = .variable
+    private var allCategories: [Category] = []
+    private var variableCategories : [Category] = []
+    private var fixedCategories : [Category] = []
     
     public lazy var categoryListView: CategoryListView = {
         let view = CategoryListView()
@@ -46,7 +49,7 @@ class TopViewController: UIViewController {
         return view
     }()
     
-    public let backgroundView = UIView.createBackgroundView()
+    public lazy var backgroundView = UIView.createBackgroundView(target: self, action: #selector(didTapBackground))
     public lazy var categoryViewHeight: CGFloat = view.frame.height - 300 - Dimension.safeAreaTopHeight
     
     public lazy var customAlert: CustomAlert = {
@@ -56,10 +59,12 @@ class TopViewController: UIViewController {
         return alert
     }()
     
-    private var categories: [Category] = []
-    public var savings: [Saving] = []
+    public var shouldShowAlertView = false
     
-    public var allItems: [Item] = []
+    public var allItems: [Item] = [] {
+        didSet { shoppingListView.reloadData() }
+    }
+    
     public var selectedItems: [Item] = []
     
     public var historyItems: [HistoryItem] = []
@@ -72,17 +77,23 @@ class TopViewController: UIViewController {
     public var shoppingListViewBottomConstraint : NSLayoutConstraint?
     public var newItemInputViewBottomConstraint: NSLayoutConstraint?
     
+    public lazy var defaultIncome = 0 {
+        didSet { topViewHeader?.setIncomePriceLabel(price: defaultIncome) }
+    }
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchSaving()
         fetchCategories()
         fetchHistoryItem()
         configureUI()
         setupConstraint()
         keyboardNotification()
+        
+        defaultIncome = UserDefaults.standard.integer(forKey: "incomeSome")
+        topViewHeader?.setIncomePriceLabel(price: defaultIncome)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,37 +121,47 @@ class TopViewController: UIViewController {
     // MARK: - API
     
     func uploadNewCategory(image: UIImage) {
-        CategoryService.uploadCategory(image: image) { imageUrl in
-            self.categeoryBar.reloadCollectionViewAfterNewCategorySelected(imageUrl: imageUrl)
+        showLoader(true)
+        
+        let info = CategoryInfo(categoryImage: image, type: spendingType.text)
+        
+        CategoryService.uploadCategory(categoryInfo: info) { imageUrl in
+            let newCategory = Category(data: ["imageUrl": imageUrl])
+            
+            if self.spendingType == .variable {
+                self.variableCategories.append(newCategory)
+                self.categeoryBar.selectNewCategory(categories: self.variableCategories)
+            } else {
+                self.fixedCategories.append(newCategory)
+                self.categeoryBar.selectNewCategory(categories: self.fixedCategories)
+            }
+            
+            self.showLoader(false)
+            
+            UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut) {
+                self.backgroundView.alpha = 0
+                self.categoryListView.frame.origin.y = self.view.frame.height
+            }
         }
     }
     
     func fetchCategories() {
         CategoryService.fetchCategories { categories in
-            self.categories = categories
+            self.allCategories = categories
             
-            guard let firstCategory = categories.first else { return }
+            categories.forEach { category in
+                if category.type == "variable" {
+                    self.variableCategories.append(category)
+                } else {
+                    self.fixedCategories.append(category)
+                }
+            }
+            
+            guard let firstCategory = self.variableCategories.first else { return }
             self.selectedCategoryImageUrl = firstCategory.imageUrl
-            self.categeoryBar.reloadCollectionViewAfterCategoryFetched(categories: categories)
+            self.categeoryBar.changeSpendingType(categories: self.variableCategories)
             
             self.fetchItem()
-        }
-    }
-    
-    func uploadItem(data: [String: Any]) {
-        ItemService.uploadItem(data: data) { item in
-            self.allItems.append(item)
-            self.swapListCategory()
-            
-            if  self.selectedItems.count > 0 {
-                let index = IndexPath(row: self.selectedItems.count - 1, section: 0)
-                self.shoppingListView.scrollToRow(at: index, at: .bottom, animated: true)
-            }
-            
-            if item.isChecked {
-                self.changeSpendingSum(item: item)
-                self.uploadHistoryItem(item: item)
-            }
         }
     }
     
@@ -152,15 +173,26 @@ class TopViewController: UIViewController {
         }
     }
     
-    func editItem(item: Item) {
-        ItemService.editItem(item: item) { error in
-            if let error = error {
-                print("failed to edit item: \(error.localizedDescription)")
-                return
+    func uploadItem(data: [String: Any]) {
+        ItemService.uploadItem(data: data) { item in
+            self.allItems.insert(item, at: 0)
+            self.swapListCategory()
+            
+            if item.isChecked {
+                self.changeSpendingSum(item: item)
+                self.uploadHistoryItem(item: item)
             }
+        }
+    }
+    
+    func editItem(item: Item) {
+        ItemService.editItem(item: item) { newItem in
+            self.allItems = newItem
             
             self.shoppingListView.reloadData()
             self.dismissAlert()
+            
+            self.changeSpendingSum(item: nil)
         }
     }
     
@@ -170,6 +202,7 @@ class TopViewController: UIViewController {
         ItemService.changeCheckValue(item: item,
                                      shouldAddHistory: !isHistoryItemExist) { _ in
             self.fetchHistoryItem()
+            self.fetchItem()
         }
     }
     
@@ -201,12 +234,12 @@ class TopViewController: UIViewController {
         }
     }
     
-    func uploadSaving(savingValue: Int) {
+    func uploadSpending(savingValue: Int) {
         
-        let categoriesString = categories.map { $0.imageUrl }
-        let info = SavingInfo(cost: savingValue, categories: categoriesString)
+        let categoriesString = allCategories.map { $0.imageUrl }
+        let info = SpendingInfo(cost: savingValue, categories: categoriesString)
         
-        SavingService.uploadSaving(savingInfo: info) { error in
+        SpendingService.uploadSpending(spendingInfo: info) { error in
             if let error = error {
                 print("failed to upload saving: \(error.localizedDescription)")
                 return
@@ -214,9 +247,22 @@ class TopViewController: UIViewController {
         }
     }
     
-    func fetchSaving() {
-        SavingService.fetchSaving { savings in
-            self.savings = savings
+    func uploadSaving(savingValue: Int) {
+        SavingService.uploadSaving(value: savingValue) { error in
+            if let error = error {
+                print("failed to upload: \(error.localizedDescription)")
+                return
+            }
+        }
+    }
+    
+    // MARK: - Action
+    
+    @objc func didTapBackground() {
+        view.endEditing(true)
+        
+        UIView.animate(withDuration: 0.25) {
+            self.customAlert.frame.origin.y += 80
         }
     }
     
@@ -248,12 +294,14 @@ class TopViewController: UIViewController {
                                         height: categoryViewHeight)
         
         view.addSubview(customAlert)
-        customAlert.centerX(inView: view)
-        customAlert.centerY(inView: view)
-        customAlert.setDimensions(height: 240, width: view.frame.width - 60)
+        customAlert.frame = CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 240)
+        customAlert.center.x = view.frame.width / 2
+        customAlert.center.y = view.frame.height / 2
     }
     
     func showAlert() {
+        shouldShowAlertView = true
+        
         UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut) {
             self.backgroundView.alpha = 1
             self.customAlert.alpha = 1
@@ -261,10 +309,14 @@ class TopViewController: UIViewController {
     }
     
     func dismissAlert() {
+        shouldShowAlertView = false
+        customAlert.alreadyEditing = false
+        
         UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut) {
             self.view.endEditing(true)
             self.backgroundView.alpha = 0
             self.customAlert.alpha = 0
+            self.customAlert.center.y = self.view.frame.height / 2
         }
     }
     
@@ -285,8 +337,23 @@ class TopViewController: UIViewController {
                 self.selectedItems.append(item)
             }
         }
-        
         self.shoppingListView.reloadData()
+    }
+    
+    func changeCategory(spendingType: SpendingType) {
+        self.spendingType = spendingType
+        
+        if spendingType == .variable {
+            guard let firstCategory = self.variableCategories.first else { return }
+            self.selectedCategoryImageUrl = firstCategory.imageUrl
+            self.categeoryBar.changeSpendingType(categories: self.variableCategories)
+        } else {
+            guard let firstCategory = self.fixedCategories.first else { return }
+            self.selectedCategoryImageUrl = firstCategory.imageUrl
+            self.categeoryBar.changeSpendingType(categories: self.fixedCategories)
+        }
+        
+        swapListCategory()
     }
     
     func swapHistoryCategory() {

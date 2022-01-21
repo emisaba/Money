@@ -19,7 +19,7 @@ class CategoryListView: UIView {
         cv.delegate = self
         cv.dataSource = self
         cv.register(CategoryListCell.self, forCellWithReuseIdentifier: identifier)
-        cv.backgroundColor = .white
+        cv.backgroundColor = .customWhite()
         cv.contentInset = UIEdgeInsets(top: 20, left:20, bottom: 10, right: 20)
         cv.showsHorizontalScrollIndicator = false
         cv.layer.cornerRadius = 50
@@ -71,15 +71,15 @@ extension CategoryListView: UICollectionViewDelegate {
 extension CategoryListView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (frame.width - 80) / 5
+        let width = (frame.width - 40) / 7
         return CGSize(width: width, height: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 0
     }
 }

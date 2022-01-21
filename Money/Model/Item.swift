@@ -9,6 +9,7 @@ struct Item {
     var isChecked: Bool
     let itemID: String
     let timeStamp: Timestamp
+    let date: String
     
     init(data: [String: Any]) {
         self.spendingType = data["spendingType"] as? String ?? ""
@@ -18,5 +19,6 @@ struct Item {
         self.isChecked = data["isChecked"] as? Bool ?? true
         self.itemID = data["itemID"] as? String ?? ""
         self.timeStamp = data["timeStamp"] as? Timestamp ?? Timestamp()
+        self.date = data["date"] as? String ?? ""
     }
 }

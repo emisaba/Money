@@ -3,14 +3,19 @@ import Firebase
 
 struct CategoryService {
     
-    static func uploadCategory(image: UIImage, completion: @escaping(String) -> Void) {
-        ImageUploader.uploadImage(image: image) { imageUrl in
-            
-            let date = DateFormatter.dateString(date: Date())
-            let removeDay = date.dropLast(3)
+    static var monthAndDateWithSlash: String {
+        let date = DateFormatter.dateString(date: Date())
+        let removeDay = String(date.dropLast(3))
+        return removeDay
+    }
+    
+    static func uploadCategory(categoryInfo: CategoryInfo, completion: @escaping(String) -> Void) {
+        ImageUploader.uploadImage(image: categoryInfo.categoryImage) { imageUrl in
             
             let data: [String: Any] = ["imageUrl": imageUrl,
-                                       "date": removeDay]
+                                       "type": categoryInfo.type,
+                                       "date": monthAndDateWithSlash,
+                                       "timeStamp": Timestamp()]
             
             COLLECTION_CATEGORIES.addDocument(data: data) { error in
                 if let error = error {
@@ -27,7 +32,9 @@ struct CategoryService {
         COLLECTION_CATEGORIES.order(by: "timeStamp", descending: false).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
-            let categories = documents.map { Category(data: $0.data()) }
+            var categories = documents.map { Category(data: $0.data()) }
+            categories.removeAll(where: { $0.date != monthAndDateWithSlash })
+            
             completion(categories)
         }
     }
