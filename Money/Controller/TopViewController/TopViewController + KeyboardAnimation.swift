@@ -19,11 +19,15 @@ extension TopViewController {
                 newItemInputViewBottomConstraint?.isActive = true
                 view.layoutIfNeeded()
                 
+                backgroundForInput.isHidden = false
+                
             } else {
                 shoppingListViewTopConstraint?.isActive = false
                 shoppingListViewBottomConstraint?.isActive = false
                 newItemInputViewBottomConstraint?.isActive = false
                 view.layoutIfNeeded()
+                
+                backgroundForInput.isHidden = true
             }
         }
     }
@@ -35,9 +39,9 @@ extension TopViewController {
             .constraint(equalTo: view.topAnchor,
                         constant: -Dimension.keyboardHeight)
         
-        shoppingListViewBottomConstraint = shoppingListView.bottomAnchor
-            .constraint(equalTo: newItemInputView.topAnchor,
-                        constant: -(inputCloseButtonHeight - Dimension.safeAreaBottomHeight))
+//        shoppingListViewBottomConstraint = shoppingListView.bottomAnchor
+//            .constraint(equalTo: newItemInputView.topAnchor,
+//                        constant: -(inputCloseButtonHeight - Dimension.safeAreaBottomHeight))
         
         newItemInputViewBottomConstraint = newItemInputView.bottomAnchor
             .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,

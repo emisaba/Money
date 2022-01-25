@@ -59,6 +59,14 @@ class TopViewController: UIViewController {
         return alert
     }()
     
+    public lazy var backgroundForInput: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.isHidden = true
+        button.addTarget(self, action: #selector(didTapInputBackground), for: .touchUpInside)
+        return button
+    }()
+    
     public var shouldShowAlertView = false
     
     public var allItems: [Item] = [] {
@@ -266,6 +274,10 @@ class TopViewController: UIViewController {
         }
     }
     
+    @objc func didTapInputBackground() {
+        view.endEditing(true)
+    }
+    
     // MARK: - Helper
     
     func configureUI() {
@@ -297,6 +309,12 @@ class TopViewController: UIViewController {
         customAlert.frame = CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 240)
         customAlert.center.x = view.frame.width / 2
         customAlert.center.y = view.frame.height / 2
+        
+        shoppingListView.addSubview(backgroundForInput)
+        backgroundForInput.anchor(top: view.topAnchor,
+                                  left: view.leftAnchor,
+                                  right: view.rightAnchor,
+                                  height: view.frame.height - Dimension.keyboardHeight)
     }
     
     func showAlert() {
@@ -348,8 +366,11 @@ class TopViewController: UIViewController {
             self.selectedCategoryImageUrl = firstCategory.imageUrl
             self.categeoryBar.changeSpendingType(categories: self.variableCategories)
         } else {
-            guard let firstCategory = self.fixedCategories.first else { return }
-            self.selectedCategoryImageUrl = firstCategory.imageUrl
+            if let firstCategory = self.fixedCategories.first {
+                self.selectedCategoryImageUrl = firstCategory.imageUrl
+            } else {
+                self.selectedCategoryImageUrl = ""
+            }
             self.categeoryBar.changeSpendingType(categories: self.fixedCategories)
         }
         

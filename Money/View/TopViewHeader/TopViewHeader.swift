@@ -30,7 +30,7 @@ class TopViewHeader: UIView {
     private var savingPriceLabel = UILabel()
     
     private let monthLabelText = DateFormatter.titleMonth(date: Date())
-    private lazy var monthLabel = UILabel.createBoldFontLabel(text: monthLabelText, size: 30)
+    private lazy var monthLabel = UILabel.createMonthLabel(text: monthLabelText, size: 30)
     private lazy var incomeStackView = createStackView(moneyType: .income, priceType: .income)
     private lazy var spendingStackView = createStackView(moneyType: .spending, priceType: .spending)
     private lazy var savingStackView = createStackView(moneyType: .saving, priceType: .saving)
@@ -222,7 +222,7 @@ class TopViewHeader: UIView {
     
     func createAttributesText(price: Int) -> NSAttributedString {
         let enAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 16)]
-        let priceAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.digitalFont(size: 26), .kern: 1]
+        let priceAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.digitalFont(size: 22), .kern: 1]
         let priceText = NSMutableAttributedString(string: "￥ ", attributes: enAttribute)
         priceText.append(NSAttributedString(string: "\(price)", attributes: priceAttribute))
         return priceText

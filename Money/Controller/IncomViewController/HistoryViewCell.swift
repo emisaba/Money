@@ -60,17 +60,17 @@ class HistoryViewCell: UITableViewCell {
                          paddingLeft: 20)
         nameLabel.centerY(inView: self)
         
-        addSubview(priceLabel)
-        priceLabel.textAlignment = .left
-        priceLabel.anchor(left: nameLabel.rightAnchor,
-                          paddingLeft: 30, width: 100)
-        priceLabel.centerY(inView: self)
-        
         contentView.addSubview(selectButton)
         selectButton.anchor(right: rightAnchor,
                             paddingRight: 10,
                             width: 100)
         selectButton.centerY(inView: self)
+        
+        addSubview(priceLabel)
+        priceLabel.anchor(right: selectButton.leftAnchor,
+                          paddingRight: 20,
+                          width: 100)
+        priceLabel.centerY(inView: self)
     }
     
     func configureViewModel() {

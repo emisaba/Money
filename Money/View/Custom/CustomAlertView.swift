@@ -180,6 +180,12 @@ class CustomAlert: UIView {
         alertType = .incomeAdd
         nameTextField.text = ""
         priceTextField.text = ""
+        
+        let nameAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.banana(size: 18), .kern: 1]
+        nameTextField.attributedPlaceholder = NSAttributedString(string: "タイトル", attributes: nameAttributes)
+        
+        let priceAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.abraham(size: 18), .kern: 3]
+        priceTextField.attributedPlaceholder = NSAttributedString(string: "金額", attributes: priceAttributes)
     }
     
     func editIncome(info: IncomeInfo) {

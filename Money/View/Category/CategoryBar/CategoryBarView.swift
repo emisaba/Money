@@ -43,6 +43,8 @@ class CategeoryBar: UIView {
         return button
     }()
     
+    private var reloadCount = 0
+    
     // MARK: - LifeCycle
     
     override init(frame: CGRect) {
@@ -108,20 +110,16 @@ extension CategeoryBar: UICollectionViewDataSource {
         
         if didSelectFromSelectedList {
             let selectedCell = indexPath.row == categories.count - 1
-            if selectedCell { cell.selectCategory(isSelected: true) }
-            
             cell.viewModel = CategoryBarViewModel(category: categories[indexPath.row],
                                                   isSelected: selectedCell,
                                                   cellNumber: indexPath.row)
             
         } else {
             let firstCell = indexPath.row == 0
-            if firstCell { cell.selectCategory(isSelected: true) }
             cell.viewModel = CategoryBarViewModel(category: categories[indexPath.row],
                                                   isSelected: firstCell,
                                                   cellNumber: indexPath.row)
         }
-        
         return cell
     }
 }

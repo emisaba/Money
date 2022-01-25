@@ -44,13 +44,15 @@ class CategoryBarCell: CategoryCell {
         historyButton.isHidden = true
         historyButton.anchor(bottom: bottomAnchor)
         historyButton.setDimensions(height: 40, width: frame.width)
+        
+        selectCategory(isSelected: false)
     }
     
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         imageView.sd_setImage(with: viewModel.imageUrl, for: .normal, completed: nil)
         
-        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
+        Timer.scheduledTimer(withTimeInterval: 0, repeats: false) { _ in
             let isSelected = viewModel.isSelected
             self.selectCategory(isSelected: isSelected)
         }
@@ -60,7 +62,7 @@ class CategoryBarCell: CategoryCell {
         let image = imageView.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
         imageView.setImage(image, for: .normal)
         imageView.tintColor = isSelected ? .customNavyBlue() : .white
-        imageView.backgroundColor = isSelected ? .customYellow() : .clear
+        imageView.backgroundColor = isSelected ? .customYellow() : .customLightNavyBlue()
         historyButton.isHidden = isSelected ? false : true
         
         if isSelected {

@@ -21,7 +21,7 @@ struct SavingService {
     }
     
     static func fetchSaving(completion: @escaping(Saving) -> Void) {
-        COLLECTION_SAVINGS.getDocuments { snapshot, _ in
+        COLLECTION_SAVINGS.order(by: "date", descending: true).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
             let savingMonth = documents.map { SavingMonth(data: $0.data()) }

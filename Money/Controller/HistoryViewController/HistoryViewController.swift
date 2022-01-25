@@ -89,6 +89,7 @@ class HistoryViewController: UIViewController {
         view.backgroundColor = .customNavyBlue()
         
         view.addSubview(mainImageView)
+        mainImageView.tintColor = .customNavyBlue()
         mainImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                              paddingTop: 10)
         mainImageView.setDimensions(height: 120, width: 120)

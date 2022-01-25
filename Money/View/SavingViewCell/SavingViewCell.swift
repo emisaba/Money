@@ -11,8 +11,6 @@ class SavingCell: UITableViewCell {
     private let dateLabel = UITextField.createLabelTextField(text: "")
     private let priceLabel = UITextField.createLabelTextField(text: "")
     
-    private let nextPageButton = UIButton.createImageView(image: #imageLiteral(resourceName: "arrow-right"), radius: 0)
-    
     // MARK: - LifeCycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -36,14 +34,8 @@ class SavingCell: UITableViewCell {
                          paddingLeft: 20)
         dateLabel.centerY(inView: self)
         
-        addSubview(nextPageButton)
-        nextPageButton.anchor(right: rightAnchor, paddingRight: 10)
-        nextPageButton.setDimensions(height: 30, width: 30)
-        nextPageButton.centerY(inView: self)
-        nextPageButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
         addSubview(priceLabel)
-        priceLabel.anchor(right: nextPageButton.leftAnchor, paddingRight: 20)
+        priceLabel.anchor(right: rightAnchor, paddingRight: 20)
         priceLabel.setDimensions(height: frame.height, width: 150)
         priceLabel.centerY(inView: self)
     }
