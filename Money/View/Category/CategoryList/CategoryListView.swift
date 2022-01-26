@@ -1,7 +1,7 @@
 import UIKit
 
 protocol CategoryListViewDelegate {
-    func selectCategory(image: UIImage)
+    func selectCategory(image: UIImage, cell: CategoryListCell)
 }
 
 class CategoryListView: UIView {
@@ -62,7 +62,8 @@ extension CategoryListView: UICollectionViewDataSource {
 
 extension CategoryListView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.selectCategory(image: categoryImages[indexPath.row])
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryListCell else { return }
+        delegate?.selectCategory(image: categoryImages[indexPath.row], cell: cell)
     }
 }
 

@@ -128,7 +128,7 @@ class TopViewController: UIViewController {
     
     // MARK: - API
     
-    func uploadNewCategory(image: UIImage) {
+    func uploadNewCategory(image: UIImage, cell: CategoryListCell) {
         showLoader(true)
         
         let info = CategoryInfo(categoryImage: image, type: spendingType.text)
@@ -145,6 +145,7 @@ class TopViewController: UIViewController {
             }
             
             self.showLoader(false)
+            cell.isSelected = false
             
             UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut) {
                 self.backgroundView.alpha = 0
@@ -276,6 +277,7 @@ class TopViewController: UIViewController {
     
     @objc func didTapInputBackground() {
         view.endEditing(true)
+        newItemInputView.namePlaceholederLabel.isHidden = false
     }
     
     // MARK: - Helper

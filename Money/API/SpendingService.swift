@@ -26,7 +26,7 @@ struct SpendingService {
     }
     
     static func fetchSpending(completion: @escaping([Spending]) -> Void) {
-        COLLECTION_SPENDING.getDocuments { snapshot, _ in
+        COLLECTION_SPENDING.order(by: "date", descending: true).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
             let savings = documents.map { Spending(data: $0.data()) }

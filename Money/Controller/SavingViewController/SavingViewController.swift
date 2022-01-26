@@ -7,7 +7,7 @@ class SavingViewController: UIViewController {
     private let titleLabel = UILabel.createBoldFontLabel(text: "貯蓄", size: 24)
     private let priceLabel = UILabel.createBoldFontLabel(text: "", size: 20)
     
-    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "arrow-left"), target: self, selector: #selector(didTapCloseButton))
+    private let closeButton = UIButton.createImageButton(image: #imageLiteral(resourceName: "old-close"), target: self, selector: #selector(didTapCloseButton))
     
     public let identifier = "identifier"
     private lazy var tableView: BaseTableView = {
